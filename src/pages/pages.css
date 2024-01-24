@@ -2,20 +2,12 @@
     font-family: var(--font-family);
 }
 
-/*main*/
-.main__container {
-    position: absolute;
-    top: 100vh;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
 /*home*/
 .home__container {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    background: var(--celeste-background);
+    background: #f1f1f1;
 }
 
 /*page404*/

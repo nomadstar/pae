@@ -8,11 +8,6 @@ import "./header.css"
 const Header = () => {
     return (
         <header className="app__header">
-            <div className="overlay">
-                <div className="sobre_overlay"></div>
-            </div>
-
-            <div className="app__header-bigcontainer">
                 <div className="app__header-content__title">
                     <h1>Pregúntale al Experto</h1>
                     <p>
@@ -31,7 +26,6 @@ const Header = () => {
                     doctor"/>
                     <Instruct image={image4} texto="Envía tus datos y espera tu respuesta"/>
                 </div>
-            </div>
         </header>
     );
 };
