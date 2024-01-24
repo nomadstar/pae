@@ -3,7 +3,7 @@ import logo from "../../assets/logo.webp"
 import { FaCheckCircle } from "react-icons/fa"
 import FormularioPago from "./FormularioPago"
 import { SintomasMadre, SintomasBebe, SintomasPostparto } from './Sintomas'
-import "./pages.css"
+import "../pages.css"
 
 const Pay = () => {
   const [temaConsulta, setTemaConsulta] = useState("");
@@ -34,8 +34,8 @@ const Pay = () => {
   return (
     <main className="begin__main">
       
-      {state1 && <FormularioPago precio="3" title="Pregunta" question={true} />}
-      {state2 && <FormularioPago precio="20" title="Teleconsulta" question={false} />}
+      {state1 && <FormularioPago precio="3" title="Pregunta" question={true} state={state1} changeState={changeState1}/>}
+      {state2 && <FormularioPago precio="20" title="Teleconsulta" question={false} state={state1} changeState={changeState2}/>}
 
       <form onSubmit={handleSubmit} className="begin__form-container">
         <div className="begin__logo-container">
@@ -137,7 +137,6 @@ const Pay = () => {
           </div>
         </div>
       </form>
-      {(state1 || state2) && <div className="overlay__fondo"></div>}
     </main>
   );
 };

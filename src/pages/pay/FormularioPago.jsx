@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const FormularioPago = ({title, question, precio}) => {
+const FormularioPago = ({title, question, precio, state, changeState}) => {
     const [temaC, setTemaConsulta] = useState("");
 
     const handleTemaConsultaChange = (event) => {
@@ -8,11 +8,12 @@ const FormularioPago = ({title, question, precio}) => {
     };
 
     return (
+    <>
         <form className="teleconsulta_pay">
             <div className="contenedor_pagar-teleconsulta2">
                 <div className="pagar__container-second">
                     <h3 className="h3_teleconsulta">{title}</h3>
-                    <b onClick={changeState2}>&times;</b>
+                    <b onClick={changeState}>&times;</b>
                 </div>
                 <div className="pagar_contenedor_inputs2">
                     <div>
@@ -128,6 +129,8 @@ const FormularioPago = ({title, question, precio}) => {
                 </div>
             </div>
         </form>
+        {state && <div className="overlay__fondo"></div>}
+    </>
     )
 }
 
