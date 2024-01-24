@@ -35,7 +35,7 @@ const Pay = () => {
     <main className="begin__main">
       
       {state1 && <FormularioPago precio="3" title="Pregunta" question={true} state={state1} changeState={changeState1}/>}
-      {state2 && <FormularioPago precio="20" title="Teleconsulta" question={false} state={state1} changeState={changeState2}/>}
+      {state2 && <FormularioPago precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2}/>}
 
       <form onSubmit={handleSubmit} className="begin__form-container">
         <div className="begin__logo-container">
