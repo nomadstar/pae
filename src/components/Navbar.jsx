@@ -34,10 +34,7 @@ const Navbar = () => {
                 <Link className='app_navbar-link' to='/'>
                     Home
                 </Link>
-                <Link className='app_navbar-link' to='/begin'>
-                    Consulta
-                </Link>
-                <a href='#whatispae'>¿Qué es PAE?</a>
+                <a href='#whatispae'>¿Quienes somos?</a>
                 <a href='#pros'>Profesionales</a>
                 <a href='#comments'>Comentarios</a>
             </div>
@@ -83,15 +80,8 @@ const Navbar = () => {
                             >
                                 Home
                             </Link>
-                            <Link
-                                onClick={() => setToggleMenu(false)}
-                                className='app_navbar-link-responsive'
-                                to='/begin'
-                            >
-                                Consulta
-                            </Link>
                             <a onClick={() => setToggleMenu(false)} href='#whatispae'>
-                                ¿Qué es PAE?
+                                ¿Quienes somos?
                             </a>
                             <a onClick={() => setToggleMenu(false)} href='#pros'>
                                 Profesionales
@@ -109,7 +99,7 @@ const Navbar = () => {
 
             <div className='app__navbar-buttons-container'>
                 <a className='app__navbar-buttons-container-link' href='https://www.mimanualdelbebe.com'>
-                    Mi Manual del Bebé
+                    Mi manual del bebé
                 </a>
             </div>
         </nav>

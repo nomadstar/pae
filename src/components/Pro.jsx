@@ -6,7 +6,7 @@ const Pro = () => {
     const [showMore, changeShowMore] = useState(false);
     const changeShow = () => {
         changeShowMore(!showMore);
-      };
+    };
     
     return (
         <div className='pro__container' id='pros'>

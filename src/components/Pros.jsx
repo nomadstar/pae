@@ -5,11 +5,11 @@ const DoctorCard = ({ nombre, pais, especialidad, fotoClass }) => (
         <div className={`pro__image-container ${fotoClass}`}></div>
         <div className='card__content'>
             <h4>{nombre}</h4>
+            <p>{especialidad}</p>
+            <p>{pais}</p>
             <div className='stars__container'>
                 <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
             </div>
-            <p>{pais}</p>
-            <p>{especialidad}</p>
         </div>
     </div>
 );

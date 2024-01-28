@@ -23,8 +23,9 @@
 
 .cards__container {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
 }
 
 #menos {
@@ -33,12 +34,12 @@
 
 .pro__title {
     width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .pro__title h3 {
-    font-size: 3rem;
-    letter-spacing: -0.04em;
-    font-weight: 800;
+    font-size: 3.5rem;
 }
 
 .pro__image-container {
@@ -135,9 +136,13 @@
 
 @media screen and (max-width: 650px) {
     .pro__title h3 {
-        font-size: 2rem;
+        font-size: 3rem;
         letter-spacing: -0.04em;
         font-weight: 800;
+    }
+    .pro__title {
+        margin-bottom: 1rem;
+        margin-top: -2rem;
     }
     .cards__container {
         display: flex;
@@ -155,40 +160,37 @@
 .whatis__container {
     width: 100%;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 0 2rem;
+    gap: 2rem;
 }
 
 .whatis__image {
-    width: 90rem;
+    width: 30rem;
 }
 
 .whatis__image img {
     width: 100%;
+    position: relative;
+    top: .25rem;
 }
 
 .whatis__content {
     display: flex;
+    margin-top: 6rem;
     flex-direction: column;
-    width: 100%;
-    margin-top: 15rem;
-    gap: 1rem;
-}
-
-.c1 {
-    justify-content: flex-end;
-    align-items: flex-end;
-}
-.c1 p{
-    text-align: end;
+    gap: 2rem;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
 }
 
 .whatis__content  a {
     border: none;
     padding: 1rem;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-top: 1.3rem;
     color: #fff;
     background: var(--celeste-color);
@@ -203,7 +205,9 @@
 
 .whatis__content-buttons {
     display: flex;
-    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+    gap: 6rem;
 }
 
 .c2 {
@@ -212,12 +216,13 @@
 }
 
 .whatis__content h2 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     color: var(--celeste-color);
 }
 
 .whatis__content p{
-    color: rgb(74, 74, 74);
+    color: var(--font-color);
+    font-size: 1.2rem;
     font-family: var(--font-family);
 }
 
@@ -243,6 +248,7 @@
     .whatis__container {
         flex-direction: column;
         align-items: center;
+        padding: 0 2rem 3rem 2rem;
     }
     .whatis__image {
         width: 20rem;
@@ -255,7 +261,7 @@
         align-items: center;
     }
     .whatis__content h2 {
-        font-size: 2.3rem;
+        font-size: 3.5rem;
     }
     .whatis__content p {
         text-align: left;
@@ -282,7 +288,13 @@
         align-items: center;
     }
     .whatis__content h2 {
-        font-size: 2rem;
+        font-size: 3rem;
+    }
+    .whatis__content-buttons {
+        gap: 1rem;
+    }
+    .whatis__content-buttons {
+        text-align: center;
     }
     .whatis__content p {
         text-align: left;
@@ -307,7 +319,7 @@
 
 .comm__content h4 {
     color: var(--celeste-color);
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: bold;
     line-height: 4rem; 
     letter-spacing: -0.04em; 
@@ -412,7 +424,7 @@
     }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 750px) {
     .c__container {
         flex-direction: column;
         gap: 1rem;
@@ -439,11 +451,14 @@
         align-items: center;
         display: flex;
     }
+    .comm__content a {
+        width: 100%;
+    }
 }
 
 /*footer*/
 .footer__container {
-    background: var(--celeste-color);
+    background: var(--celeste-background);
     color: #fff;
     display: flex;
     align-items: flex-start;
@@ -465,6 +480,14 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.footer__logo {
+    width: 20rem;
+}
+
+.footer__logo img {
+    width: 100%;
 }
 
 .footer__contact-container a {
@@ -489,17 +512,22 @@
         justify-content: space-between;
         flex-wrap: wrap;
     }
+    .footer__logo {
+        width: 21rem;
+    }
+    
+    .footer__logo img {
+        width: 100%;
+    }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 750px) {
     .footer__container {
         padding: 2rem;
         justify-content: flex-start;
         align-items: center;
     }
     .footer__logo {
-        justify-content: center;
-        display: flex;
-        width: 100%;
+        width: 22rem;
     }
 }

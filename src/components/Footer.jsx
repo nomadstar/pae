@@ -1,5 +1,5 @@
 import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from 'react-icons/fa';
-import logo from "../assets/logo.webp"
+import logo from "../assets/logo__footer.webp"
 
 const Footer = () => {
   return (
@@ -12,8 +12,8 @@ const Footer = () => {
       <div className='footer__terminos'>
         <h5>Links útiles</h5>
         <a target="_blank" href="https://pae.mimanualdelbebe.com/terminos-y-condiciones">Términos y Condiciones</a>
-        <a href="/">Inicio</a>
-        <a href="#whatispae">¿Qué es PAE?</a>
+        <a href="/">Home</a>
+        <a href="#whatispae">¿Quienes somos?</a>
         <a href="#pros">Profesionales</a>
       </div>
 
