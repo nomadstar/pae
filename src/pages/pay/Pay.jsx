@@ -1,5 +1,6 @@
 import { useState } from "react"
 import logo from "../../assets/logo.webp"
+import images from "../../assets/sintoms"
 import { FaCheckCircle } from "react-icons/fa"
 import FormularioPago from "./FormularioPago"
 import { SintomasMadre, SintomasBebe, SintomasPostparto } from './Sintomas'
@@ -39,17 +40,23 @@ const Pay = () => {
 
       <form onSubmit={handleSubmit} className="begin__form-container">
         <div className="begin__logo-container">
-          <img src={logo} alt="logo" />
-          <h5>Pregúntale al Experto</h5>
-          <p>Realiza tu teleconsulta rápidamente</p>
+          <div>
+          <h5 style={{fontSize: "3rem"}}>Pregúntale al Experto</h5>
+          <p style={{textAlign: "center", marginTop: "1rem"}}>Realiza tu teleconsulta rápidamente</p>
+          </div>
         </div>
         <div className="begin__form-container-1">
           <div className="begin__form uno">
-            <h2>Temática</h2>
-            <p>Seleccione una opción: </p>
+            <article className="begin__form--content">
+            <h2 className="titulo">Escoge el tipo de consulta</h2>
+            </article>
 
-            <div>
+          <div className="contenedor-imagenes">
+          <div className="sintomas_container-content1">
               <label htmlFor="opcion1">Embarazo</label>
+              <div className="begin__form-image">
+                <img src={images.s1} alt="sintoma 1" />
+              </div>
               <input
                 type="radio"
                 id="opcion1"
@@ -60,8 +67,11 @@ const Pay = () => {
               />
             </div>
 
-            <div>
+            <div className="sintomas_container-content1">
               <label htmlFor="opcion2">Bebé</label>
+              <div className="begin__form-image">
+                <img src={images.s2} alt="sintoma 2" />
+              </div>
               <input
                 type="radio"
                 id="opcion2"
@@ -72,8 +82,11 @@ const Pay = () => {
               />
             </div>
 
-            <div>
+            <div className="sintomas_container-content1">
               <label htmlFor="opcion3">Mamá postparto</label>
+              <div className="begin__form-image">
+                <img src={images.s3} alt="sintoma 3" />
+              </div>
               <input
                 type="radio"
                 id="opcion3"
@@ -84,24 +97,23 @@ const Pay = () => {
               />
             </div>
           </div>
+          </div>
 
-          <div className="begin__form dos">
-            <h2>Síntomas</h2>
-            <p>Luego, seleccione síntomas: </p>
-            <div>
+          <div className="dos"> 
+            <article className="begin__form--content">
+              <div>
+              <h2>¿Qué sintomas presentas?</h2>
+              </div>
+            </article>
               {temaConsulta === "embarazo" && <SintomasMadre />}
               {temaConsulta === "bebe" && <SintomasBebe />}
               {temaConsulta === "postparto" && <SintomasPostparto />}
-            </div>
           </div>
         </div>
 
         <div className="begin__form-2">
-          <h2>Tipo de consulta</h2>
-
-          <div className="begin__form-cuppon">
-            <label>Tengo un código de descuento: </label>
-            <input id="codigo_descuento" type="text" name="codigo_descuento" />
+          <div>
+            <h2 style={{textAlign: "center", fontSize: "2.3rem"}}>Tipo de consulta</h2>
           </div>
 
           <div className="option__container">
@@ -118,6 +130,13 @@ const Pay = () => {
                 <button onClick={changeState1} type="button">
                   Realizar pregunta por $3 US
                 </button>
+                <div className="cuppon-container">
+                  <p>Tengo un código de invitación</p>
+                  <input type="text" />
+                </div>
+                <button onClick={changeState2} type="button">
+                  Usar código
+                </button>
               </div>
             </div>
             <div className="begin__form-option">
@@ -131,6 +150,13 @@ const Pay = () => {
               <div className="begin__final-buton">
                 <button onClick={changeState2} type="button">
                   Realizar teleconsulta por $20 US
+                </button>
+                <div className="cuppon-container">
+                  <p>Tengo un código de invitación</p>
+                  <input type="text" />
+                </div>
+                <button onClick={changeState2} type="button">
+                  Usar código
                 </button>
               </div>
             </div>
