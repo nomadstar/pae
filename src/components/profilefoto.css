@@ -1,0 +1,25 @@
+.profilefoto__container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.profilefoto__container h4 {
+    color: rgb(48, 48, 48);
+}
+
+.profilefoto__container button {
+    background: var(--celeste-color);
+    border: none;
+    padding: .5rem 1rem;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.profilefoto__container-image {
+    width: 15rem;
+    height: 15rem;
+    position: relative;
+}

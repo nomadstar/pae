@@ -7,6 +7,7 @@ import { ThanksP, ThanksT } from "./pages/Thanks"
 
 const Pay = lazy(() => import('./pages/pay/Pay'));
 const Page404 = lazy(() => import('./pages/Page404'));
+const Profile = lazy(() => import('./pages/Profile'));
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/begin" element={<Pay />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/thanksp" element={<ThanksP />} />
             <Route path="/thankst" element={<ThanksT />} />
             <Route path="*" element={<Page404 />} />

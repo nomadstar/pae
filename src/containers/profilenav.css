@@ -1,0 +1,34 @@
+.profilenav__profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.profilenav__container {
+    border-right: 2px solid rgb(243, 243, 243);
+}
+
+.profilenav__image img {
+    width: 100%;
+}
+
+.profilenav__profile button {
+    border: none;
+    background: none;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(213, 213, 213);
+    cursor: pointer;
+    transition: all .1s ease-in;
+}
+
+.profilenav__profile button:hover {
+    background: var(--celeste-color);
+    color: #fff;
+}
+
+#b1e {
+    border-top: 1px solid rgb(213, 213, 213);
+}
+
+#b2e {
+    border-bottom: 1px solid rgb(213, 213, 213);
+}
