@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
 import Loading from './Loading'
 import Home from "./pages/Home"
+import { ThanksP, ThanksT } from "./pages/Thanks"
 
 const Pay = lazy(() => import('./pages/pay/Pay'));
 const Page404 = lazy(() => import('./pages/Page404'));
@@ -51,6 +52,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/begin" element={<Pay />} />
+            <Route path="/thanksp" element={<ThanksP />} />
+            <Route path="/thankst" element={<ThanksT />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
