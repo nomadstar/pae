@@ -1,5 +1,6 @@
 import { useState } from "react"
-import logo from "../../assets/logo.webp"
+import Footer from "../../components/Footer"
+import Navbar from "../../components/Navbar"
 import images from "../../assets/sintoms"
 import { FaCheckCircle } from "react-icons/fa"
 import FormularioPago from "./FormularioPago"
@@ -34,7 +35,7 @@ const Pay = () => {
 
   return (
     <main className="begin__main">
-      
+      <Navbar />
       {state1 && <FormularioPago precio="3" title="Pregunta" question={true} state={state1} changeState={changeState1}/>}
       {state2 && <FormularioPago precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2}/>}
 
@@ -120,11 +121,10 @@ const Pay = () => {
             <div className="begin__form-option">
               <h3>Pregúntale al Doctor</h3>
               <p>
-                <FaCheckCircle className="circle_check" /> Respuesta en menos de 2 horas.
+                <FaCheckCircle className="circle_check" /> Respuesta en menos de 3 horas
               </p>
               <p>
-                <FaCheckCircle className="circle_check" /> Pedíatras, ginecólogos, médicos especialistas
-                en el embarazo.
+                <FaCheckCircle className="circle_check" /> Médicos especialistas
               </p>
               <div className="begin__final-buton">
                 <button onClick={changeState1} type="button">
@@ -163,6 +163,7 @@ const Pay = () => {
           </div>
         </div>
       </form>
+      <Footer estilo="pay__footer"/>
     </main>
   );
 };

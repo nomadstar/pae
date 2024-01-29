@@ -1,9 +1,9 @@
 import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from 'react-icons/fa';
 import logo from "../assets/logo__footer.webp"
 
-const Footer = () => {
+const Footer = ({estilo=""}) => {
   return (
-    <footer className='footer__container' id='footer'>
+    <footer className={`footer__container ${estilo}`} id='footer'>
 
       <div className='footer__logo'>
         <img src={logo} alt="logo" />
@@ -13,7 +13,7 @@ const Footer = () => {
         <h5>Links útiles</h5>
         <a target="_blank" href="https://pae.mimanualdelbebe.com/terminos-y-condiciones">Términos y Condiciones</a>
         <a href="/">Home</a>
-        <a href="#whatispae">¿Quienes somos?</a>
+        <a href="/#whatispae">¿Quienes somos?</a>
         <a href="#pros">Profesionales</a>
       </div>
 
