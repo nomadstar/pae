@@ -1,32 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import logo from "../assets/logo.webp"
 import './navbar.css';
 
-const Navbar = ({estilo}) => {
+const Navbar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollPos = window.scrollY;
-
-            setVisible(prevScrollPos > currentScrollPos || currentScrollPos === 0);
-            setPrevScrollPos(currentScrollPos);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [prevScrollPos]);
-
     return (
-        <nav className={`app__navbar ${visible ? '' : 'app__navbar--hidden'}`}>
+        <nav className="app__navbar navbar__profile">
             <div className='app__navbar-logo-container'>
                 <img src={logo} alt='logo' />
             </div>

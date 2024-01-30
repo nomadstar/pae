@@ -16,6 +16,10 @@
     transition: top 0.3s ease-in-out;
 }
 
+.navbar__profile {
+    position: relative;
+}
+
 .app__navbar--hidden {
     top: -10vh; /* Altura de la barra de navegación */
 }

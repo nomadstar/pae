@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar"
+import Navbar from "../components/NavbarProfile"
 import Footer from "../components/Footer"
 import ProfileNav from "../containers/ProfileNav"
 import "./pages.css"

@@ -12,8 +12,7 @@
 .profile__main {
     display: flex;
     width: 100%;
-    padding-top: 10vh;
-    height: 80vh;
+    height: 70vh;
 }
 
 .profile__content {
@@ -48,7 +47,6 @@
 /*pay*/
 .begin__main {
     position: relative;
-    top: 6rem;
     width: 100%;
     flex-direction: column;
     display: flex;
@@ -331,8 +329,9 @@
 
 .teleconsulta_pay {
     display: flex;
-    height: 90vh;
-    width: 90vw;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
@@ -342,76 +341,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9000;
-}
-
-.teleconsulta_pay div {
-    width: 100%;
-}
-
-.contenedor_pagar-teleconsulta {
-    padding: 0 -5rem;
-}
-
-.h3_teleconsulta {
-    margin-top: 8rem;
-}
-
-.contenedor_pagar-teleconsulta2 {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-}
-
-.pagar_contenedor_inputs2 {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: .7rem;
-}
-.pagar_contenedor_inputs2 div {
-    display: flex;
-    flex-direction: column;
-}
-
-.pagar_contenedor_inputs2 label {
-    margin-bottom: .5rem;
-}
-
-#new {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 30%;
-    justify-content: space-between;
-}
-
-#new input {
-    width: auto;
-    height: 100%;
-}
-
-.preguntas_finales-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.preguntas_finales-container div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 30%;
-}
-
-.pagar_contenedor_inputs2 input[type="text"], .pagar_contenedor_inputs2 input[type="number"] {
-    width: 30%;
-    padding: .5rem .6rem;
-    border: none;
-    outline: 1px solid var(--celeste-color);
-}
-.pagar_contenedor_inputs2 input[type="text"]:focus {
-    outline: 2px solid var(--celeste-color);
 }
 
 .div__tipo-embarazo {

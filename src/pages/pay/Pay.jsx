@@ -35,7 +35,6 @@ const Pay = () => {
 
   return (
     <main className="begin__main">
-      <Navbar />
       {state1 && <FormularioPago precio="3" title="Pregunta" question={true} state={state1} changeState={changeState1}/>}
       {state2 && <FormularioPago precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2}/>}
 
