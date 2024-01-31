@@ -2,6 +2,23 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/**/
+.button-next {
+    display: flex;
+    padding: 3rem 0 0 0;
+    gap: 1rem;
+}
+
+.button-next button {
+    padding: 1rem;
+    width: 8rem;
+    background: var(--celeste-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /*profile*/
 .profile__container {
     display: flex;
@@ -68,6 +85,7 @@
     flex-direction: column;
     padding: 2rem 6rem;
     width: 90%;
+    margin-top: 10vh;
     border-radius: .5rem;
     background: #fefefe;
     gap: 1rem;
@@ -283,6 +301,15 @@
     color: var(--celeste-color);
 }
 
+
+.aviso__texto{ 
+    width: 100%;
+}
+.aviso__texto p {
+    color: red;
+    text-decoration: none;
+}
+
 .begin__logo-container p {
     font-size: 1rem;
     color: rgb(59, 59, 59);
@@ -341,6 +368,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9000;
+    height: 90%;
 }
 
 .div__tipo-embarazo {

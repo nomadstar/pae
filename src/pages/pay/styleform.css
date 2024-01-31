@@ -1,0 +1,64 @@
+.teleconsulta_pay {
+    padding-top: 30rem;
+    gap: 1rem;
+    width: 80%;
+}
+
+.input__container {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.input__container input {
+    width: 100%;
+}
+
+#birthtype, #birthtypebaby {
+    width: 100%;
+    font-size: 1.05rem;
+    padding: .2rem 0;
+    border: none;
+    outline: 1px solid var(--celeste-color);
+    border-radius: 3px;
+}
+
+.input__container input[type="text"],  .input__container input[type="date"], .input__container input[type="email"]{
+    padding: .5rem;
+    border: none;
+    outline: 1px solid var(--celeste-color);
+    border-radius: 5px;
+}
+.input__container-save {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.contenedorpagar__pregunta {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.contenedorpagar__pregunta label {
+    font-size: 1.2rem;
+    color: var(--celeste-color);
+    font-weight: 600;
+}
+
+.contenedorpagar__pregunta input {
+    padding: 1rem .5rem;
+    border: none;
+    outline: 1px solid var(--celeste-color);
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 750px){
+    .teleconsulta_pay {
+        padding-top: 35rem;
+        gap: 1rem;
+        width: 90%;
+    }
+}
