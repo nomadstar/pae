@@ -398,6 +398,8 @@ if(logeado){
         }
       </form>
 
+
+      <script type="text/javascript" src="https://checkout.epayco.co/checkout.js" />
       <Footer estilo="pay__footer" />
     </main>
   );

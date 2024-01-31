@@ -1,7 +1,8 @@
+import Checkout from "../../components/Checkout"
 import "./styleform.css"
 
 function enviarInfo(userInfo, data){
-    fetch('http://10.50.2.239:4000/api/pae/success/doctor', {
+    fetch('http://10.50.2.239:4000/api/pae/success', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -180,11 +181,14 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                     <p >Autorizo que guarden mis datos para futuras consultas.</p>
                 </div>
                 <div className="pagar__buton-container">
-                    <button
+                    <Checkout />
+                    {
+                        /*
+<button
                         type="button"
                         onClick={() => {
                             //procesar el pago
-
+                            
 
                             //luego de procesar el pago, hacer esto
                             if(tipo === "embarazo"){
@@ -198,6 +202,8 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                     >
                         Ir a pagar ${precio} US
                     </button>
+                        */
+                    }
 
                 </div>
 
