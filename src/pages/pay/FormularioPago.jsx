@@ -181,7 +181,7 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                     <p >Autorizo que guarden mis datos para futuras consultas.</p>
                 </div>
                 <div className="pagar__buton-container">
-                    <Checkout />
+                    <Checkout precio={precio} consulta={title} tematica={tipo}/>
                     {
                         /*
 <button
