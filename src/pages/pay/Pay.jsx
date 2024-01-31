@@ -7,8 +7,8 @@ import Login from "../../components/Login"
 import { SintomasMadre, SintomasBebe, SintomasPostparto } from './Sintomas'
 import "../pages.css"
 
-const Aviso = ({texto}) => {
-  return(
+const Aviso = ({ texto }) => {
+  return (
     <div className="aviso__texto">
       <p>{texto}</p>
     </div>
@@ -16,6 +16,103 @@ const Aviso = ({texto}) => {
 }
 
 const Pay = () => {
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    lastname: "",
+    age: "",
+    email: "",
+    type: "",
+    sintoms: []
+  })
+
+  const handleChangeUser = (e) => {
+    const { name, value, checked, type } = e.target;
+  
+    setUserInfo((prevData) => {
+      const newData = { ...prevData };
+  
+      if (type === "radio") {
+        newData[name] = value;
+        setTemaConsulta(e.target.value);
+      } else if (type === "checkbox") {
+        if (checked) {
+          newData[name] = [...newData[name], value];
+        } else {
+          newData[name] = newData[name].filter((sintoma) => sintoma !== value);
+        }
+      } else {
+        newData[name] = value;
+      }
+  
+      return newData;
+    });
+    console.log(userInfo);
+  };
+  
+  const [dataEmbarazo, setDataEmbarazo] = useState({
+    birthmom: "",
+    birthdate: "",
+    birthtype: "",
+    momheight: "",
+    momweight: "",
+    pregnantbefore: "",
+    question: "null"
+  });
+
+  const handleChangeEmbarazo = (e) => {
+    const { name, value } = e.target;
+
+    setDataEmbarazo((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    console.log(dataEmbarazo)
+  };
+
+  const [dataBebe, setDataBebe] = useState({
+    namebaby: "",
+    birthbaby: "",
+    birthtype: "",
+    babyheight: "",
+    babyweight: "",
+    question: "null"
+  });
+
+  const handleChangeBebe = (e) => {
+    const { name, value } = e.target;
+
+    setDataBebe((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    console.log(dataBebe)
+  };
+
+  const [dataPostparto, setDatapostparto] = useState({
+    lastbirthdate: "",
+    birthtype: "",
+    babyheight: "",
+    babyweight: "",
+    pregnantbefore: "",
+    question: "null"
+  });
+
+  const handleChangePostparto = (e) => {
+
+    const { name, value } = e.target;
+
+    setDatapostparto((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    console.log(dataPostparto)
+  };
+
+
+
   const [select, setSelect] = useState(false);
   const [logeado, setLogeado] = useState(true);
   const [form1, setForm1] = useState(true);
@@ -38,7 +135,7 @@ const Pay = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Evitar que el formulario se envíe automáticamente y recargue la página
-    
+
     if (form1) {
       etapa1();
     } else if (form2) {
@@ -54,15 +151,15 @@ const Pay = () => {
   const etapa1 = (e) => {
     if (temaConsulta === "") {
       changeStateErrorTrue();
-    }else {
+    } else {
       changeStateErrorFalse();
       setForm1(false);
       setForm2(true);
     }
   }
 
-  const volveretapa1 = () => {   
-    changeStateErrorFalse(); 
+  const volveretapa1 = () => {
+    changeStateErrorFalse();
     setForm1(true);
     setForm2(false);
   }
@@ -103,28 +200,41 @@ const Pay = () => {
 
   //abrir formulario, es necesario revisar el login antes
   const changeState1 = () => {
-    if(logeado){
+    setState1(!state1)
+    /*
+if(logeado){
       setState1(!state1)
     }else{
       setLogin(true)
     }
+    */
   };
 
   const changeState2 = () => {
-    if(logeado){
+    setState2(!state2);
+    /*
+if(logeado){
       setState2(!state2)
     }else{
       setLogin(true)
     }
+    */
   };
 
   return (
     <main className="begin__main">
-      {state1 && <FormularioPago precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta}/>}
-      {state2 && <FormularioPago precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} />}
       
+      {state1 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
+      {state2 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
+
       <form className="begin__form-container" onSubmit={handleSubmit}>
 
+
+        <div>
+          <button type="button" onClick={() => {
+            console.log(userInfo);
+          }}></button>
+        </div>
         <div className="begin__logo-container">
           <div>
             <h5 style={{ fontSize: "3rem" }}>Pregúntale al Experto</h5>
@@ -142,52 +252,52 @@ const Pay = () => {
                 </article>
 
                 {error && (
-                  <Aviso texto="Por favor, ingresa una opción para continuar."/>
+                  <Aviso texto="Por favor, ingresa una opción para continuar." />
                 )}
 
                 <div className="contenedor-imagenes">
                   <div className="sintomas_container-content1">
                     <label htmlFor="opcion1">Embarazo</label>
                     <div className="begin__form-image">
-                      <img style={{cursor: "pointer"}} onClick={handleImageClick1} src={images.s1} alt="sintoma 1" />
+                      <img style={{ cursor: "pointer" }} src={images.s1} alt="sintoma 1" />
                     </div>
                     <input
                       type="radio"
                       id="opcion1"
-                      name="opciones"
-                      value="embarazo"
+                      name="type"
+                      value= "embarazo"
                       checked={temaConsulta === "embarazo"}
-                      onChange={handleTemaConsultaChange}
+                      onChange={handleChangeUser}
                     />
                   </div>
 
                   <div className="sintomas_container-content1">
                     <label htmlFor="opcion2">Bebé</label>
                     <div className="begin__form-image">
-                      <img style={{cursor: "pointer"}} onClick={handleImageClick2} src={images.s2} alt="sintoma 2" />
+                      <img style={{ cursor: "pointer" }} src={images.s2} alt="sintoma 2" />
                     </div>
                     <input
                       type="radio"
                       id="opcion2"
-                      name="opciones"
+                      name="type"
                       value="bebe"
                       checked={temaConsulta === "bebe"}
-                      onChange={handleTemaConsultaChange}
+                      onChange={handleChangeUser}
                     />
                   </div>
 
                   <div className="sintomas_container-content1">
                     <label htmlFor="opcion3">Mamá postparto</label>
                     <div className="begin__form-image">
-                      <img style={{cursor: "pointer"}} onClick={handleImageClick3} src={images.s3} alt="sintoma 3" />
+                      <img style={{ cursor: "pointer" }} src={images.s3} alt="sintoma 3" />
                     </div>
                     <input
                       type="radio"
                       id="opcion3"
-                      name="opciones"
+                      name="type"
                       value="postparto"
                       checked={temaConsulta === "postparto"}
-                      onChange={handleTemaConsultaChange}
+                      onChange={handleChangeUser}
                     />
                   </div>
                 </div>
@@ -208,11 +318,11 @@ const Pay = () => {
                 </div>
               </article>
               {error && (
-                  <Aviso texto="Por favor, ingresa una opción para continuar."/>
-                )}
-              {temaConsulta === "embarazo" && <SintomasMadre />}
-              {temaConsulta === "bebe" && <SintomasBebe />}
-              {temaConsulta === "postparto" && <SintomasPostparto />}
+                <Aviso texto="Por favor, ingresa una opción para continuar." />
+              )}
+              {temaConsulta === "embarazo" && <SintomasMadre json={userInfo} changeState={handleChangeUser}/>}
+              {temaConsulta === "bebe" && <SintomasBebe json={userInfo} changeState={handleChangeUser}/>}
+              {temaConsulta === "postparto" && <SintomasPostparto json={userInfo} changeState={handleChangeUser}/>}
               <div className="button-next">
                 <button onClick={etapa2}>Siguiente</button>
                 <button onClick={volveretapa1}>Volver</button>
@@ -280,9 +390,11 @@ const Pay = () => {
           )
         }
         {
+          /*
           login && (
             <Login state={login} changeState={closeLogin}/>
           )
+          */
         }
       </form>
 

@@ -1,5 +1,5 @@
 .teleconsulta_pay {
-    padding-top: 30rem;
+    padding-top: 35rem;
     gap: 1rem;
     width: 80%;
 }
@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 750px){
     .teleconsulta_pay {
-        padding-top: 35rem;
+        padding-top: 40rem;
         gap: 1rem;
         width: 90%;
     }
