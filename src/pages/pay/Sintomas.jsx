@@ -1,5 +1,6 @@
 import images from "../../assets/sintoms";
 
+//todos los sintomas y el tipo
 const SintomasContainer = ({ tipo, sintomas, changeState }) => {
     return (
         <article className="contenedor">

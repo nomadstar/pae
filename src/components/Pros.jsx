@@ -1,5 +1,6 @@
 import { FaStar } from 'react-icons/fa'
 
+//todos los profesionales y su información
 const DoctorCard = ({ nombre, pais, especialidad, fotoClass }) => (
     <div className="card__container">
         <div className={`pro__image-container ${fotoClass}`}></div>

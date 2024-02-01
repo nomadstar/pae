@@ -6,8 +6,8 @@ import logo from "../assets/logo.webp"
 import './navbar.css';
 
 const Navbar = () => {
-    const [prevScrollPos, setPrevScrollPos] = useState(0);
-    const [visible, setVisible] = useState(true);
+    //const [prevScrollPos, setPrevScrollPos] = useState(0);
+    //const [visible, setVisible] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
 
     return (

@@ -16,6 +16,7 @@ const Aviso = ({ texto }) => {
 }
 
 const Pay = () => {
+  //info del usuario que se repite en todas las consultas
   const [userInfo, setUserInfo] = useState({
     name: "",
     lastname: "",
@@ -24,7 +25,7 @@ const Pay = () => {
     type: "",
     sintoms: []
   })
-
+  //actualiza la informacion de usuario dependiendo
   const handleChangeUser = (e) => {
     const { name, value, checked, type } = e.target;
 
@@ -49,7 +50,7 @@ const Pay = () => {
     });
     console.log(userInfo);
   };
-
+  //info extra de tipo embarazo
   const [dataEmbarazo, setDataEmbarazo] = useState({
     birthmom: "",
     birthdate: "",
@@ -59,7 +60,6 @@ const Pay = () => {
     pregnantbefore: "",
     question: ""
   });
-
   const handleChangeEmbarazo = (e) => {
     const { name, value } = e.target;
 
@@ -70,7 +70,7 @@ const Pay = () => {
 
     console.log(dataEmbarazo)
   };
-
+  //info extra de tipo bebe
   const [dataBebe, setDataBebe] = useState({
     namebaby: "",
     birthbaby: "",
@@ -79,7 +79,6 @@ const Pay = () => {
     babyweight: "",
     question: ""
   });
-
   const handleChangeBebe = (e) => {
     const { name, value } = e.target;
 
@@ -90,7 +89,7 @@ const Pay = () => {
 
     console.log(dataBebe)
   };
-
+  //info extra de tipo postparto
   const [dataPostparto, setDatapostparto] = useState({
     lastbirthdate: "",
     birthtype: "",
@@ -99,7 +98,6 @@ const Pay = () => {
     pregnantbefore: "",
     question: ""
   });
-
   const handleChangePostparto = (e) => {
 
     const { name, value } = e.target;
@@ -123,29 +121,23 @@ const Pay = () => {
   const changeSelected = () => {
     setSelect(true);
   }
-
   const changeStateErrorTrue = () => {
     setError(true);
   }
-
   const changeStateErrorFalse = () => {
     setError(false);
   }
-
   const handleSubmit = (e) => {
-    e.preventDefault(); // Evitar que el formulario se envíe automáticamente y recargue la página
-
+    e.preventDefault();
     if (form1) {
       etapa1();
     } else if (form2) {
       etapa2();
-    } // Añade más lógica según tus necesidades
+    }
   };
-
   const closeLogin = () => {
     setLogin(false);
   }
-
   const etapa1 = (e) => {
     if (temaConsulta === "") {
       changeStateErrorTrue();
@@ -155,19 +147,16 @@ const Pay = () => {
       setForm2(true);
     }
   }
-
   const volveretapa1 = () => {
     changeStateErrorFalse();
     setForm1(true);
     setForm2(false);
   }
-
   const etapa2 = (e) => {
     changeStateErrorFalse();
     setForm2(false);
     setForm3(true);
   }
-
   const volveretapa2 = () => {
     changeStateErrorFalse();
     setForm2(true);
@@ -175,38 +164,32 @@ const Pay = () => {
   }
 
   const [temaConsulta, setTemaConsulta] = useState("");
-
   const handleTemaConsultaChange = (event) => {
     setTemaConsulta(event.target.value);
   };
-
   const handleImageClick1 = () => {
     setTemaConsulta('embarazo');
   };
-
   const handleImageClick2 = () => {
     setTemaConsulta('bebe');
   };
-
   const handleImageClick3 = () => {
     setTemaConsulta('postparto');
   };
 
   const [state1, setState1] = useState(false);
   const [state2, setState2] = useState(false);
-
   //abrir formulario, es necesario revisar el login antes
   const changeState1 = () => {
     setState1(!state1)
     /*
-if(logeado){
+    if(logeado){
       setState1(!state1)
     }else{
       setLogin(true)
     }
     */
   };
-
   const changeState2 = () => {
     setState2(!state2);
     /*
@@ -222,6 +205,7 @@ if(logeado){
     <main className="begin__main">
 
       {state1 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
+
       {state2 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
 
       <form className="begin__form-container" onSubmit={handleSubmit}>
@@ -385,6 +369,7 @@ if(logeado){
             </div>
           )
         }
+
         {
           /*
           login && (
@@ -393,7 +378,6 @@ if(logeado){
           */
         }
       </form>
-
 
       <script type="text/javascript" src="https://checkout.epayco.co/checkout.js" />
       <Footer estilo="pay__footer" />

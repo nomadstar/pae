@@ -24,9 +24,6 @@ class Checkout extends Component {
             extra1: JSON.stringify(userInfo),
             extra2: JSON.stringify(dataSend)
         };
-
-
-        // Abre el pago y maneja la respuesta
         handler.open(data);
     }
 

@@ -1,25 +1,6 @@
 import Checkout from "../../components/Checkout"
 import "./styleform.css"
 
-function enviarInfo(userInfo, data){
-    fetch('http://10.50.2.239:4000/api/pae/success', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({ userInfo: userInfo, data: data }),
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    console.log('Respuesta del servidor:', data);
-                                    // Puedes realizar otras acciones después de recibir la respuesta
-                                })
-                                .catch(error => {
-                                    console.error('Error al realizar la solicitud:', error);
-                                    // Puedes manejar los errores aquí
-                                });
-}
-
 const FormularioPago = ({ title, question, precio, state, userInfo, changeUserInfo, changeState, tipo, dataEmbarazo, dataPostparto, dataBebe, changeEmbarazo, changeBebe, changePostparto }) => {
     return (
         <>
@@ -42,6 +23,11 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                     <input type="text" id="age" name="age" value={userInfo.age} onChange={changeUserInfo} required />
                 </div>
 
+                <div className="input__container">
+                    <label htmlFor="email">Correo madre</label>
+                    <input type="email" name="email" id="email" value={userInfo.email} onChange={changeUserInfo} required />
+                </div>
+
                 {/*
             !logeado && (
                     <>
@@ -59,12 +45,7 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                         </div>
                     </>
                 )          
-    */}
-
-                <div className="input__container">
-                    <label htmlFor="email">Correo madre</label>
-                    <input type="email" name="email" id="email" value={userInfo.email} onChange={changeUserInfo} required />
-                </div>
+                */}
 
                 {tipo === "embarazo" &&
                     <>
@@ -146,7 +127,6 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                     </>
                 }
 
-
                 {question &&
                     (<div className="contenedorpagar__pregunta">
                         {tipo === "embarazo" &&
@@ -172,7 +152,6 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                             )
                         }
 
-
                     </div>
                     )}
 
@@ -186,29 +165,6 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                 }
                 <div className="pagar__buton-container">
                     <Checkout gratis={false} precio={precio} title={title} tematica={tipo} dataSend={ tipo === "embarazo" ? dataEmbarazo : (tipo === "bebe" ? dataBebe : dataPostparto)} userInfo={userInfo} question={question} />
-                    {
-                        /*
-<button
-                        type="button"
-                        onClick={() => {
-                            //procesar el pago
-                            
-
-                            //luego de procesar el pago, hacer esto
-                            if(tipo === "embarazo"){
-                                enviarInfo(userInfo, dataEmbarazo);
-                            }else if(tipo === "bebe"){
-                                enviarInfo(userInfo, dataBebe);
-                            }else if(tipo === "postparto"){
-                                enviarInfo(userInfo, dataPostparto);
-                            }
-                        }}
-                    >
-                        Ir a pagar ${precio} US
-                    </button>
-                        */
-                    }
-
                 </div>
 
             </form>
