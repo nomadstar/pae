@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./paico.css"
 
 class Checkout extends Component {
+
     openCheckout = async (e) => {
         e.preventDefault();
 
@@ -12,6 +13,13 @@ class Checkout extends Component {
 
         const { title, precio, question, gratis } = this.props;
 
+        var url;
+        if(question){
+            url = "https://paemimanualdelbebe.netlify.app/thanksp"
+        }else{
+            url = "https://paemimanualdelbebe.netlify.app/thankst"
+        }
+
         let data = {
             name: title,
             description: `Servicio temática ${question ? "PREGUNTA" : "TELECONSULTA"}`,
@@ -19,16 +27,18 @@ class Checkout extends Component {
             amount: gratis ? 0 : precio,
             country: "co",
             confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
-            response: `https://paemimanualdelbebe.netlify.app${question ? "thanksp" : "thankst"}`,
+            response: url
         };
-        
+
+
         // Abre el pago y maneja la respuesta
         handler.open(data)
             .then(response => {
                 // Verifica la respuesta del pago
                 if (response.status === "aceptado") {
-                    alert("it works!");
-                    console.log("test")
+                    console.log("ayuaaaa!!!!!!!!!!!!!!!!!!")
+                    // Redirige al usuario a la ruta correspondiente
+
                     /*
                     // Procesa la información en el servidor
                     enviarInfo(userInfo, dataSend);
@@ -44,7 +54,7 @@ class Checkout extends Component {
                 // Maneja errores en la apertura del pago
                 console.error('Error al abrir el pago:', error);
             });
-        
+
     }
 
     render() {

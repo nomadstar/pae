@@ -1,5 +1,6 @@
 import { FaCheckCircle } from "react-icons/fa"
 import whatis_doctor from "../assets/doctor.webp"
+import {Link} from "react-router-dom"
 
 const Whatis = () => {
     return (
@@ -15,7 +16,9 @@ const Whatis = () => {
                     <p><FaCheckCircle /> <b>Teleconsultas de 15 minutos con médicos especialistas</b></p>
                 </div>
                 <div className='whatis__content-buttons'>
-                    <a href="/begin">Iniciar consulta</a>
+                        <Link className='' to='/begin'>
+                            Iniciar consulta
+                        </Link>
                     <a target='_blank' href='https://mimanualdelbebe.com'>Mi Manual del Bebé</a>
                 </div>
             </div>

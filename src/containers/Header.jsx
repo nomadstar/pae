@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 import image1 from "../assets/n1.webp"
 import image2 from "../assets/n2.webp"
 import image3 from "../assets/n3.webp"
@@ -17,7 +18,9 @@ const Header = () => {
                     </p>
                     <div className="app__header-content__buttons">
                         <div>
-                        <a href="/begin">Iniciar consulta</a>
+                        <Link className='' to='/begin'>
+                            Iniciar consulta
+                        </Link>
                         </div>
                     </div>
                 </div>

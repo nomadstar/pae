@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
 
 import Loading from './Loading'
 import Home from "./pages/Home"
@@ -52,10 +52,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="https://paemimanualdelbebe.netlify.app/begin" element={<Pay />} />
-            <Route path="https://paemimanualdelbebe.netlify.app/profile" element={<Profile />} />
-            <Route path="https://paemimanualdelbebe.netlify.app/thanksp" element={<ThanksP />} />
-            <Route path="https://paemimanualdelbebe.netlify.app/thankst" element={<ThanksT />} />
+            <Route path="begin" element={<Pay />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="thanksp"  element={<ThanksP />} />
+            <Route path="thankst" element={<ThanksT />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
