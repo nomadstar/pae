@@ -51,7 +51,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <BrowserRouter>
           <Routes>
-            <Route path="https://paemimanualdelbebe.netlify.app/" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="https://paemimanualdelbebe.netlify.app/begin" element={<Pay />} />
             <Route path="https://paemimanualdelbebe.netlify.app/profile" element={<Profile />} />
             <Route path="https://paemimanualdelbebe.netlify.app/thanksp" element={<ThanksP />} />
