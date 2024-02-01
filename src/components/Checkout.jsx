@@ -19,7 +19,7 @@ class Checkout extends Component {
             amount: gratis ? 0 : precio,
             country: "co",
             confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
-            response: `http://localhost:5173/${question ? "thanksp" : "thankst"}`,
+            response: `https://paemimanualdelbebe.netlify.app${question ? "thanksp" : "thankst"}`,
         };
         
         // Abre el pago y maneja la respuesta
