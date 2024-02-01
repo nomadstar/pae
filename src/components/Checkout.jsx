@@ -18,11 +18,11 @@ class Checkout extends Component {
             description: `Servicio temática ${question ? "PREGUNTA" : "TELECONSULTA"}`,
             currency: "usd",
             amount: gratis ? 0 : precio,
-            extra1: JSON.stringify(userInfo),
-            extra2: JSON.stringify(dataSend),
             country: "co",
             confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
-            response: "https://paemimanualdelbebe.netlify.app"
+            response: "https://paemimanualdelbebe.netlify.app",
+            extra1: JSON.stringify(userInfo),
+            extra2: JSON.stringify(dataSend)
         };
 
 
