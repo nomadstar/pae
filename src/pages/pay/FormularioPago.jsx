@@ -185,7 +185,7 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                     */
                 }
                 <div className="pagar__buton-container">
-                    <Checkout gratis={false} precio={precio} title={title} tematica={tipo} userInfo={userInfo} question={question} />
+                    <Checkout gratis={false} precio={precio} title={title} tematica={tipo} dataSend={ tipo === "embarazo" ? dataEmbarazo : (tipo === "bebe" ? dataBebe : dataPostparto)} userInfo={userInfo} question={question} />
                     {
                         /*
 <button

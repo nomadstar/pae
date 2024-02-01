@@ -11,13 +11,15 @@ class Checkout extends Component {
             test: true
         });
 
-        const { title, precio, question, gratis } = this.props;
+        const { title, precio, question, gratis, userInfo, dataSend } = this.props;
 
         let data = {
             name: title,
             description: `Servicio temática ${question ? "PREGUNTA" : "TELECONSULTA"}`,
             currency: "usd",
             amount: gratis ? 0 : precio,
+            extra1: JSON.stringify(userInfo),
+            extra2: JSON.stringify(dataSend),
             country: "co",
             confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
             response: "https://paemimanualdelbebe.netlify.app"
