@@ -51,11 +51,11 @@ function App() {
       <Suspense fallback={<Loading />}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/begin" element={<Pay />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/thanksp" element={<ThanksP />} />
-            <Route path="/thankst" element={<ThanksT />} />
+            <Route path="https://paemimanualdelbebe.netlify.app/" element={<Home />} />
+            <Route path="https://paemimanualdelbebe.netlify.app/begin" element={<Pay />} />
+            <Route path="https://paemimanualdelbebe.netlify.app/profile" element={<Profile />} />
+            <Route path="https://paemimanualdelbebe.netlify.app/thanksp" element={<ThanksP />} />
+            <Route path="https://paemimanualdelbebe.netlify.app/thankst" element={<ThanksT />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
