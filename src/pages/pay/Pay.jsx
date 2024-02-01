@@ -3,7 +3,7 @@ import Footer from "../../components/Footer"
 import images from "../../assets/sintoms"
 import { FaCheckCircle } from "react-icons/fa"
 import FormularioPago from "./FormularioPago"
-import Login from "../../components/Login"
+//import Login from "../../components/Login"
 import { SintomasMadre, SintomasBebe, SintomasPostparto } from './Sintomas'
 import "../pages.css"
 
@@ -35,6 +35,7 @@ const Pay = () => {
         newData[name] = value;
         setTemaConsulta(e.target.value);
       } else if (type === "checkbox") {
+        console.log("YEII")
         if (checked) {
           newData[name] = [...newData[name], value];
         } else {
@@ -111,8 +112,6 @@ const Pay = () => {
     console.log(dataPostparto)
   };
 
-
-
   const [select, setSelect] = useState(false);
   const [logeado, setLogeado] = useState(true);
   const [form1, setForm1] = useState(true);
@@ -147,7 +146,6 @@ const Pay = () => {
     setLogin(false);
   }
 
-
   const etapa1 = (e) => {
     if (temaConsulta === "") {
       changeStateErrorTrue();
@@ -175,7 +173,6 @@ const Pay = () => {
     setForm2(true);
     setForm3(false);
   }
-
 
   const [temaConsulta, setTemaConsulta] = useState("");
 
@@ -228,13 +225,6 @@ if(logeado){
       {state2 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
 
       <form className="begin__form-container" onSubmit={handleSubmit}>
-
-
-        <div>
-          <button type="button" onClick={() => {
-            console.log(userInfo);
-          }}></button>
-        </div>
         <div className="begin__logo-container">
           <div>
             <h5 style={{ fontSize: "3rem" }}>Pregúntale al Experto</h5>
@@ -242,8 +232,7 @@ if(logeado){
           </div>
         </div>
 
-        {
-          form1 && (
+        {form1 && (
             <div className="begin__form-container-1">
               <div className="begin__form uno">
 
@@ -305,8 +294,7 @@ if(logeado){
               <div className="button-next">
                 <button onClick={etapa1}>Siguiente</button>
               </div>
-            </div>
-          )
+            </div>)
         }
 
         {

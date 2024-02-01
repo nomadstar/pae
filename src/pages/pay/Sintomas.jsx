@@ -1,6 +1,6 @@
 import images from "../../assets/sintoms";
 
-const SintomasContainer = ({ tipo, sintomas }) => {
+const SintomasContainer = ({ tipo, sintomas, changeState }) => {
     return (
         <article className="contenedor">
             {sintomas.map((sintoma, index) => (
@@ -12,7 +12,9 @@ const SintomasContainer = ({ tipo, sintomas }) => {
                     <input
                         type="checkbox"
                         id={`${tipo}${index + 1}`}
-                        name={`sintomas_${tipo}${index + 1}`}
+                        name={"sintoms"}
+                        value={sintoma.label}
+                        onChange={changeState}
                     />
                 </div>
             ))}
@@ -20,7 +22,7 @@ const SintomasContainer = ({ tipo, sintomas }) => {
     );
 };
 
-const SintomasMadre = () => {
+const SintomasMadre = ({changeState}) => {
     const sintomas = [
         { label: 'Dolor de vientre', image: images.mama1 },
         { label: 'Calambre/Dolor de piernas', image: images.mama2  },
@@ -28,10 +30,10 @@ const SintomasMadre = () => {
         { label: 'Otro', image: images.mama4  },
     ];
 
-    return <SintomasContainer tipo="madre" sintomas={sintomas}/>;
+    return <SintomasContainer tipo="madre" sintomas={sintomas} changeState={changeState}/>;
 };
 
-const SintomasBebe = () => {
+const SintomasBebe = ({changeState}) => {
     const sintomas = [
         { label: 'Estreñimiento', image: images.bebe1 },
         { label: 'Congestión nasal / tos', image: images.bebe2 },
@@ -39,10 +41,10 @@ const SintomasBebe = () => {
         { label: 'Otro', image: images.otro },
     ];
 
-    return <SintomasContainer tipo="bebe" sintomas={sintomas} />;
+    return <SintomasContainer tipo="bebe" sintomas={sintomas} changeState={changeState} />;
 };
 
-const SintomasPostparto = () => {
+const SintomasPostparto = ({changeState}) => {
     const sintomas = [
         { label: 'Dolor al amamantar', image: images.postparto1 },
         { label: 'Destete', image: images.postparto2 },
@@ -50,7 +52,7 @@ const SintomasPostparto = () => {
         { label: 'Otro', image: images.otro  },
     ];
 
-    return <SintomasContainer tipo="postparto" sintomas={sintomas} />;
+    return <SintomasContainer tipo="postparto" sintomas={sintomas} changeState={changeState} />;
 };
 
 export { SintomasMadre, SintomasBebe, SintomasPostparto };

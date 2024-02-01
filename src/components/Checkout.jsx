@@ -16,7 +16,9 @@ class Checkout extends Component {
             currency: "cop",
             amount: '119000',
             country: "co",
-            response: "https://api.mimanualdelbebe.com/api/pae/confirmation",
+            confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
+            response: "https://mimanualdelbebe.com/",
+            redirect: "https://mimanualdelbebe.com/"
         };
         
         // Abre el pago y maneja la respuesta
@@ -24,6 +26,7 @@ class Checkout extends Component {
             .then(response => {
                 // Verifica la respuesta del pago
                 if (response.status === "aceptado") {
+                    alert("it works!");
                     // Procesa la información en el servidor
                     enviarInfo(userInfo, dataEmbarazo);
                     // Redirige al usuario a la ruta "/"
