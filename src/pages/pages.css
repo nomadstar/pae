@@ -438,6 +438,8 @@
     }
     .begin__form-container {
         flex-direction: column;
+        width: 95%;
+        padding: 1rem;
     }
     .begin__logo-container {
         justify-content: center;

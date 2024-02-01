@@ -10,15 +10,16 @@ class Checkout extends Component {
             test: true
         });
 
+        const { title, precio, question, gratis } = this.props;
+
         let data = {
-            name: "Vestido Mujer Primavera",
-            description: "Vestido Mujer Primavera",
-            currency: "cop",
-            amount: '119000',
+            name: title,
+            description: `Servicio temática ${question ? "PREGUNTA" : "TELECONSULTA"}`,
+            currency: "usd",
+            amount: gratis ? 0 : precio,
             country: "co",
             confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
-            response: "https://mimanualdelbebe.com/",
-            redirect: "https://mimanualdelbebe.com/"
+            response: `http://localhost:5173/${question ? "thanksp" : "thankst"}`,
         };
         
         // Abre el pago y maneja la respuesta
@@ -27,10 +28,13 @@ class Checkout extends Component {
                 // Verifica la respuesta del pago
                 if (response.status === "aceptado") {
                     alert("it works!");
+                    console.log("test")
+                    /*
                     // Procesa la información en el servidor
-                    enviarInfo(userInfo, dataEmbarazo);
+                    enviarInfo(userInfo, dataSend);
                     // Redirige al usuario a la ruta "/"
                     window.location.href = '/';
+                    */
                 } else {
                     // El pago no fue exitoso, manejar según sea necesario
                     console.error('Pago no exitoso:', response);
@@ -49,7 +53,7 @@ class Checkout extends Component {
                 <input
                     className='boton_paicos'
                     type="submit"
-                    placeholder="Ir a pagar"
+                    placeholder={`Ir a pagar $${this.props.precio}`}
                     onClick={this.openCheckout}
                 />
             </React.Fragment>

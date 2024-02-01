@@ -27,10 +27,10 @@ const Pay = () => {
 
   const handleChangeUser = (e) => {
     const { name, value, checked, type } = e.target;
-  
+
     setUserInfo((prevData) => {
       const newData = { ...prevData };
-  
+
       if (type === "radio") {
         newData[name] = value;
         setTemaConsulta(e.target.value);
@@ -44,12 +44,12 @@ const Pay = () => {
       } else {
         newData[name] = value;
       }
-  
+
       return newData;
     });
     console.log(userInfo);
   };
-  
+
   const [dataEmbarazo, setDataEmbarazo] = useState({
     birthmom: "",
     birthdate: "",
@@ -57,7 +57,7 @@ const Pay = () => {
     momheight: "",
     momweight: "",
     pregnantbefore: "",
-    question: "null"
+    question: ""
   });
 
   const handleChangeEmbarazo = (e) => {
@@ -77,7 +77,7 @@ const Pay = () => {
     birthtype: "",
     babyheight: "",
     babyweight: "",
-    question: "null"
+    question: ""
   });
 
   const handleChangeBebe = (e) => {
@@ -97,7 +97,7 @@ const Pay = () => {
     babyheight: "",
     babyweight: "",
     pregnantbefore: "",
-    question: "null"
+    question: ""
   });
 
   const handleChangePostparto = (e) => {
@@ -220,7 +220,7 @@ if(logeado){
 
   return (
     <main className="begin__main">
-      
+
       {state1 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
       {state2 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
 
@@ -233,68 +233,68 @@ if(logeado){
         </div>
 
         {form1 && (
-            <div className="begin__form-container-1">
-              <div className="begin__form uno">
+          <div className="begin__form-container-1">
+            <div className="begin__form uno">
 
-                <article className="begin__form--content">
-                  <h2 className="titulo">Escoge el tipo de consulta</h2>
-                </article>
+              <article className="begin__form--content">
+                <h2 className="titulo">Escoge el tipo de consulta</h2>
+              </article>
 
-                {error && (
-                  <Aviso texto="Por favor, ingresa una opción para continuar." />
-                )}
+              {error && (
+                <Aviso texto="Por favor, ingresa una opción para continuar." />
+              )}
 
-                <div className="contenedor-imagenes">
-                  <div className="sintomas_container-content1">
-                    <label htmlFor="opcion1">Embarazo</label>
-                    <div className="begin__form-image">
-                      <img style={{ cursor: "pointer" }} src={images.s1} alt="sintoma 1" />
-                    </div>
-                    <input
-                      type="radio"
-                      id="opcion1"
-                      name="type"
-                      value= "embarazo"
-                      checked={temaConsulta === "embarazo"}
-                      onChange={handleChangeUser}
-                    />
+              <div className="contenedor-imagenes">
+                <div className="sintomas_container-content1">
+                  <label htmlFor="opcion1">Embarazo</label>
+                  <div className="begin__form-image">
+                    <img style={{ cursor: "pointer" }} src={images.s1} alt="sintoma 1" />
                   </div>
+                  <input
+                    type="radio"
+                    id="opcion1"
+                    name="type"
+                    value="embarazo"
+                    checked={temaConsulta === "embarazo"}
+                    onChange={handleChangeUser}
+                  />
+                </div>
 
-                  <div className="sintomas_container-content1">
-                    <label htmlFor="opcion2">Bebé</label>
-                    <div className="begin__form-image">
-                      <img style={{ cursor: "pointer" }} src={images.s2} alt="sintoma 2" />
-                    </div>
-                    <input
-                      type="radio"
-                      id="opcion2"
-                      name="type"
-                      value="bebe"
-                      checked={temaConsulta === "bebe"}
-                      onChange={handleChangeUser}
-                    />
+                <div className="sintomas_container-content1">
+                  <label htmlFor="opcion2">Bebé</label>
+                  <div className="begin__form-image">
+                    <img style={{ cursor: "pointer" }} src={images.s2} alt="sintoma 2" />
                   </div>
+                  <input
+                    type="radio"
+                    id="opcion2"
+                    name="type"
+                    value="bebe"
+                    checked={temaConsulta === "bebe"}
+                    onChange={handleChangeUser}
+                  />
+                </div>
 
-                  <div className="sintomas_container-content1">
-                    <label htmlFor="opcion3">Mamá postparto</label>
-                    <div className="begin__form-image">
-                      <img style={{ cursor: "pointer" }} src={images.s3} alt="sintoma 3" />
-                    </div>
-                    <input
-                      type="radio"
-                      id="opcion3"
-                      name="type"
-                      value="postparto"
-                      checked={temaConsulta === "postparto"}
-                      onChange={handleChangeUser}
-                    />
+                <div className="sintomas_container-content1">
+                  <label htmlFor="opcion3">Mamá postparto</label>
+                  <div className="begin__form-image">
+                    <img style={{ cursor: "pointer" }} src={images.s3} alt="sintoma 3" />
                   </div>
+                  <input
+                    type="radio"
+                    id="opcion3"
+                    name="type"
+                    value="postparto"
+                    checked={temaConsulta === "postparto"}
+                    onChange={handleChangeUser}
+                  />
                 </div>
               </div>
-              <div className="button-next">
-                <button onClick={etapa1}>Siguiente</button>
-              </div>
-            </div>)
+            </div>
+            <div className="button-next">
+              <button onClick={etapa1}>Siguiente</button>
+            </div>
+          </div>)
         }
 
         {
@@ -308,9 +308,9 @@ if(logeado){
               {error && (
                 <Aviso texto="Por favor, ingresa una opción para continuar." />
               )}
-              {temaConsulta === "embarazo" && <SintomasMadre json={userInfo} changeState={handleChangeUser}/>}
-              {temaConsulta === "bebe" && <SintomasBebe json={userInfo} changeState={handleChangeUser}/>}
-              {temaConsulta === "postparto" && <SintomasPostparto json={userInfo} changeState={handleChangeUser}/>}
+              {temaConsulta === "embarazo" && <SintomasMadre json={userInfo} changeState={handleChangeUser} />}
+              {temaConsulta === "bebe" && <SintomasBebe json={userInfo} changeState={handleChangeUser} />}
+              {temaConsulta === "postparto" && <SintomasPostparto json={userInfo} changeState={handleChangeUser} />}
               <div className="button-next">
                 <button onClick={etapa2}>Siguiente</button>
                 <button onClick={volveretapa1}>Volver</button>
@@ -339,13 +339,17 @@ if(logeado){
                     <button onClick={changeState1} type="button">
                       Realizar pregunta por $3 US
                     </button>
-                    <div className="cuppon-container">
+                    {
+                      /*
+                        <div className="cuppon-container">
                       <p>Tengo un código de invitación</p>
                       <input type="text" />
                     </div>
                     <button onClick={changeState1} type="button">
                       Usar código
                     </button>
+                      */
+                    }
                   </div>
                 </div>
 
@@ -361,6 +365,8 @@ if(logeado){
                     <button onClick={changeState2} type="button">
                       Realizar teleconsulta por $20 US
                     </button>
+                    {
+                      /*
                     <div className="cuppon-container">
                       <p>Tengo un código de invitación</p>
                       <input type="text" />
@@ -368,6 +374,8 @@ if(logeado){
                     <button onClick={changeState2} type="button">
                       Usar código
                     </button>
+                      */
+                    }
                   </div>
                 </div>
               </div>

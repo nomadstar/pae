@@ -153,7 +153,7 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                             (
                                 <>
                                     <label htmlFor="question">¿Cuál es su pregunta?</label>
-                                    <input type="text" name="question" id="question" value={dataEmbarazo.question} onChange={changeEmbarazo} /></>
+                                    <input type="text" name="question" placeholder="Ingrese su pregunta" id="question" value={dataEmbarazo.question} onChange={changeEmbarazo} /></>
                             )
                         }
                         {tipo === "bebe" &&
@@ -176,12 +176,16 @@ const FormularioPago = ({ title, question, precio, state, userInfo, changeUserIn
                     </div>
                     )}
 
-                <div className="input__container-save">
+                {
+                    /*
+                    <div className="input__container-save">
                     <input type="checkbox" name="save_data" />
                     <p >Autorizo que guarden mis datos para futuras consultas.</p>
-                </div>
+                    </div>
+                    */
+                }
                 <div className="pagar__buton-container">
-                    <Checkout precio={precio} consulta={title} tematica={tipo}/>
+                    <Checkout gratis={false} precio={precio} title={title} tematica={tipo} userInfo={userInfo} question={question} />
                     {
                         /*
 <button

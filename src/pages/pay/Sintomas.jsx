@@ -5,7 +5,9 @@ const SintomasContainer = ({ tipo, sintomas, changeState }) => {
         <article className="contenedor">
             {sintomas.map((sintoma, index) => (
                 <div className="sintomas_container-content" key={index}>
-                    <label htmlFor={`${tipo}${index + 1}`}>{sintoma.label}</label>
+                    <div>
+                        <label htmlFor={`${tipo}${index + 1}`}>{sintoma.label}</label>
+                    </div>
                     <div>
                         <img src={sintoma.image} alt="sintoma 3" />
                     </div>
