@@ -1,5 +1,3 @@
-import "./thanks.css"
-
 const ThanksT = () => {
     return (
         <div className='thanks__container'>

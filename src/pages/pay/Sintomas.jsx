@@ -10,7 +10,7 @@ const SintomasContainer = ({ tipo, sintomas, changeState }) => {
                         <label htmlFor={`${tipo}${index + 1}`}>{sintoma.label}</label>
                     </div>
                     <div>
-                        <img src={sintoma.image} alt="sintoma 3" />
+                        <img src={sintoma.image} alt="sintoma" />
                     </div>
                     <input
                         type="checkbox"

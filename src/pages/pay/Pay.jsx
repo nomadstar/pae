@@ -5,7 +5,7 @@ import { FaCheckCircle } from "react-icons/fa"
 import FormularioPago from "./FormularioPago"
 //import Login from "../../components/Login"
 import { SintomasMadre, SintomasBebe, SintomasPostparto } from './Sintomas'
-import "../pages.css"
+import "./pay.css"
 
 const Aviso = ({ texto }) => {
   return (

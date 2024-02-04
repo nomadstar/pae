@@ -1,4 +1,4 @@
-import ProfileFoto from "../components/ProfileFoto"
+import ProfileFoto from "../../components/ProfileFoto"
 import "./profilenav.css"
 
 const ProfileNav = () => {

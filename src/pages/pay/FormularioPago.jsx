@@ -1,4 +1,4 @@
-import Checkout from "../../components/Checkout"
+import Checkout from "../../components/epayco/Checkout"
 import "./styleform.css"
 
 const FormularioPago = ({ title, question, precio, state, userInfo, changeUserInfo, changeState, tipo, dataEmbarazo, dataPostparto, dataBebe, changeEmbarazo, changeBebe, changePostparto }) => {

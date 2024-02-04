@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import logo from "../assets/logo.webp"
-import './navbar.css';
+import '../navbar/navbar.css';
 
 const Navbar = () => {
     //const [prevScrollPos, setPrevScrollPos] = useState(0);

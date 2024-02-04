@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom"
-import image1 from "../assets/n1.webp"
-import image2 from "../assets/n2.webp"
-import image3 from "../assets/n3.webp"
-import image4 from "../assets/n4.webp"
-import Instruct from "../components/Instruct"
+import image1 from "../../assets/n1.webp"
+import image2 from "../../assets/n2.webp"
+import image3 from "../../assets/n3.webp"
+import image4 from "../../assets/n4.webp"
+import Instruct from "../../components/Instruct"
 import "./header.css"
 
 const Header = () => {

@@ -1,5 +1,4 @@
 import fotoPerfilNula from "../assets/nofoto.webp"
-import "./profilefoto.css"
 
 const ProfileFoto = ({ imagen = "", name = "NOMBRE DE USUARIO" }) => {
     return (
