@@ -9,6 +9,7 @@
     background: #fff;
     padding: 2rem 3rem;
     border-radius: 5px;
+    width: 20%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -58,4 +59,18 @@
     border: none;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.textStyle-black {
+    color: black;
+}
+
+.textStyle-red {
+    color: red;
+}
+
+@media screen and (max-width: 750px) {
+    .login__container {
+        width: 90%;
+    }
 }

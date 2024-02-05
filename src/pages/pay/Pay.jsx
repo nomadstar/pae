@@ -3,7 +3,7 @@ import Footer from "../../components/Footer"
 import images from "../../assets/sintoms"
 import { FaCheckCircle } from "react-icons/fa"
 import FormularioPago from "./FormularioPago"
-//import Login from "../../components/Login"
+import Login from "../../components/login/Login"
 import { SintomasMadre, SintomasBebe, SintomasPostparto } from './Sintomas'
 import "./pay.css"
 
@@ -48,7 +48,6 @@ const Pay = () => {
 
       return newData;
     });
-    console.log(userInfo);
   };
   //info extra de tipo embarazo
   const [dataEmbarazo, setDataEmbarazo] = useState({
@@ -67,8 +66,6 @@ const Pay = () => {
       ...prevData,
       [name]: value,
     }));
-
-    console.log(dataEmbarazo)
   };
   //info extra de tipo bebe
   const [dataBebe, setDataBebe] = useState({
@@ -106,17 +103,19 @@ const Pay = () => {
       ...prevData,
       [name]: value,
     }));
-
-    console.log(dataPostparto)
   };
 
   const [select, setSelect] = useState(false);
-  const [logeado, setLogeado] = useState(true);
   const [form1, setForm1] = useState(true);
   const [form2, setForm2] = useState(false);
   const [form3, setForm3] = useState(false);
-  const [login, setLogin] = useState(false);
   const [error, setError] = useState(false);
+
+  //debe cambiarse, si ya está logeado y tiene token, poner true.
+  //la variable logeado debe depender del token
+  const [logeado, setLogeado] = useState(false);
+  //mostrar o no contenedor de login
+  const [login, setLogin] = useState(true);
 
   const changeSelected = () => {
     setSelect(true);
@@ -182,33 +181,33 @@ const Pay = () => {
   //abrir formulario, es necesario revisar el login antes
   const changeState1 = () => {
     setState1(!state1)
-    /*
+
     if(logeado){
       setState1(!state1)
     }else{
       setLogin(true)
     }
-    */
   };
   const changeState2 = () => {
     setState2(!state2);
-    /*
 if(logeado){
       setState2(!state2)
     }else{
       setLogin(true)
     }
-    */
   };
+
+  const [invitado, setInvitado] = useState(false);
 
   return (
     <main className="begin__main">
 
-      {state1 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
+      {(state1 && (invitado !== logeado)) && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} setLogin={setLogin} estaLogeado={logeado} />}
 
-      {state2 && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} />}
+      {(state2 && (invitado !== logeado)) && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} setLogin={setLogin} estaLogeado={logeado}  />}
 
-      <form className="begin__form-container" onSubmit={handleSubmit}>
+      {
+        ((!state1 && !state2) && <form className="begin__form-container" onSubmit={handleSubmit}>
         <div className="begin__logo-container">
           <div>
             <h5 style={{ fontSize: "3rem" }}>Pregúntale al Experto</h5>
@@ -349,17 +348,6 @@ if(logeado){
                     <button onClick={changeState2} type="button">
                       Realizar teleconsulta por $20 US
                     </button>
-                    {
-                      /*
-                    <div className="cuppon-container">
-                      <p>Tengo un código de invitación</p>
-                      <input type="text" />
-                    </div>
-                    <button onClick={changeState2} type="button">
-                      Usar código
-                    </button>
-                      */
-                    }
                   </div>
                 </div>
               </div>
@@ -371,13 +359,15 @@ if(logeado){
         }
 
         {
-          /*
-          login && (
-            <Login state={login} changeState={closeLogin}/>
+          (login && !logeado && form3) && (
+            <>
+              <Login state={login} changeState={closeLogin} setInvitado={setInvitado} />
+              <div className="begin__main-overlay"></div>
+            </>
           )
-          */
         }
-      </form>
+      </form>)
+      }
 
       <script type="text/javascript" src="https://checkout.epayco.co/checkout.js" />
       <Footer estilo="pay__footer" />

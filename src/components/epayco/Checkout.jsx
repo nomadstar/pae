@@ -11,13 +11,13 @@ class Checkout extends Component {
             test: true
         });
 
-        const { title, precio, question, gratis, userInfo, dataSend } = this.props;
+        const { title, precio, question, userInfo, dataSend } = this.props;
 
         let data = {
             name: title,
             description: `Servicio temática ${question ? "PREGUNTA" : "TELECONSULTA"}`,
             currency: "usd",
-            amount: gratis ? 0 : precio,
+            amount: precio,
             country: "co",
             confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
             response: "https://paemimanualdelbebe.netlify.app",
@@ -30,12 +30,13 @@ class Checkout extends Component {
     render() {
         return (
             <React.Fragment>
-                <input
-                    className='boton_paicos'
-                    type="submit"
-                    placeholder={`Ir a pagar $${this.props.precio}`}
-                    onClick={this.openCheckout}
-                />
+                <button
+                type='button'
+                className='boton_paicos'
+                onClick={this.openCheckout}
+                >
+                Ir a pagar ${this.props.precio}
+                </button>
             </React.Fragment>
         );
     }
