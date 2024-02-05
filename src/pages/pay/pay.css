@@ -276,16 +276,26 @@
 
 .pagar__buton-container {
     width: 100%;
+    gap: .5rem;
     text-align: center;
+    flex-direction: column;
 }
 
 .pagar__buton-container button {
     padding: 1rem;
+    margin-top: 1.2rem;
     border: none;
     background: var(--celeste-color);
     font-size: 1.1rem;
     color: #fff;
     border-radius: 5px;
+    width: 40%;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.pagar__buton-container button:hover {
+    background: rgb(2, 132, 136);
 }
 .title__pregunta {
     color: var(--celeste-color);
@@ -337,11 +347,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.pagar__buton-container button {
-    width: 50%;
-    margin-bottom: 2rem;
 }
 
 @media screen and (max-width: 1350px ){

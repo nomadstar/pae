@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect  } from "react"
 import Footer from "../../components/Footer"
 import images from "../../assets/sintoms"
 import { FaCheckCircle } from "react-icons/fa"
@@ -10,7 +10,7 @@ import "./pay.css"
 const Aviso = ({ texto }) => {
   return (
     <div className="aviso__texto">
-      <p>{texto}</p>
+      <p style={{textAlign: "center"}}>{texto}</p>
     </div>
   )
 }
@@ -36,7 +36,6 @@ const Pay = () => {
         newData[name] = value;
         setTemaConsulta(e.target.value);
       } else if (type === "checkbox") {
-        console.log("YEII")
         if (checked) {
           newData[name] = [...newData[name], value];
         } else {
@@ -112,8 +111,24 @@ const Pay = () => {
   const [error, setError] = useState(false);
 
   //debe cambiarse, si ya está logeado y tiene token, poner true.
-  //la variable logeado debe depender del token
   const [logeado, setLogeado] = useState(false);
+  //la variable logeado debe depender del token
+  useEffect(() => {
+    // Al cargar la página, verifica si hay un token en el localStorage
+    const token = localStorage.getItem('miToken');
+
+    console.log('Token en localStorage:', token);
+
+    if (token) {
+      // Aquí puedes realizar una llamada al servidor para validar el token si es necesario
+      // Si el token es válido, establece logeado en true, de lo contrario, en false
+      // En este ejemplo, simplemente establecemos logeado en true si hay un token
+      setLogeado(true);
+      console.log("Se ha modificado el logeado, tiene un token")
+    }
+  }, []); // El array vacío asegura que useEffect solo se ejecute una vez al cargar la página
+
+
   //mostrar o no contenedor de login
   const [login, setLogin] = useState(true);
 
@@ -163,18 +178,6 @@ const Pay = () => {
   }
 
   const [temaConsulta, setTemaConsulta] = useState("");
-  const handleTemaConsultaChange = (event) => {
-    setTemaConsulta(event.target.value);
-  };
-  const handleImageClick1 = () => {
-    setTemaConsulta('embarazo');
-  };
-  const handleImageClick2 = () => {
-    setTemaConsulta('bebe');
-  };
-  const handleImageClick3 = () => {
-    setTemaConsulta('postparto');
-  };
 
   const [state1, setState1] = useState(false);
   const [state2, setState2] = useState(false);
@@ -202,9 +205,9 @@ if(logeado){
   return (
     <main className="begin__main">
 
-      {(state1 && (invitado !== logeado)) && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} setLogin={setLogin} estaLogeado={logeado} />}
+      {(state1) && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="3" title="Pregunta para la consulta" question={true} state={state1} changeState={changeState1} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} setLogin={setLogin} estaLogeado={logeado} />}
 
-      {(state2 && (invitado !== logeado)) && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} setLogin={setLogin} estaLogeado={logeado}  />}
+      {(state2) && <FormularioPago userInfo={userInfo} changeUserInfo={handleChangeUser} precio="20" title="Teleconsulta" question={false} state={state2} changeState={changeState2} logeado={logeado} tipo={temaConsulta} dataEmbarazo={dataEmbarazo} dataBebe={dataBebe} dataPostparto={dataPostparto} changeEmbarazo={handleChangeEmbarazo} changeBebe={handleChangeBebe} changePostparto={handleChangePostparto} setLogin={setLogin} estaLogeado={logeado}  />}
 
       {
         ((!state1 && !state2) && <form className="begin__form-container" onSubmit={handleSubmit}>
@@ -222,10 +225,6 @@ if(logeado){
               <article className="begin__form--content">
                 <h2 className="titulo">Escoge el tipo de consulta</h2>
               </article>
-
-              {error && (
-                <Aviso texto="Por favor, ingresa una opción para continuar." />
-              )}
 
               <div className="contenedor-imagenes">
                 <div className="sintomas_container-content1">
@@ -274,6 +273,9 @@ if(logeado){
                 </div>
               </div>
             </div>
+            {error && (
+                <Aviso texto="Por favor, ingresa una opción para continuar." />
+              )}
             <div className="button-next">
               <button onClick={etapa1}>Siguiente</button>
             </div>
@@ -306,6 +308,18 @@ if(logeado){
           form3 && (
             <div className="begin__form-2">
               <div>
+                {
+                  logeado ? <button onClick={()=>{
+                    localStorage.removeItem('miToken');
+                    window.location.reload();
+                  }}>Cerrar sesión</button> : <button onClick={
+                    ()=>{
+                      setLogin(true);
+                    }
+                  }>Iniciar sesión</button>
+                }
+              </div>
+              <div>
                 <h2 style={{ textAlign: "center", fontSize: "2.3rem" }}>Tipo de consulta</h2>
               </div>
 
@@ -320,7 +334,7 @@ if(logeado){
                   </p>
                   <div className="begin__final-buton">
                     <button onClick={changeState1} type="button">
-                      Realizar pregunta por $3 US
+                      Quiero una pregunta
                     </button>
                     {
                       /*
@@ -346,7 +360,7 @@ if(logeado){
                   </p>
                   <div className="begin__final-buton">
                     <button onClick={changeState2} type="button">
-                      Realizar teleconsulta por $20 US
+                    Quiero una teleconsulta
                     </button>
                   </div>
                 </div>
@@ -361,7 +375,7 @@ if(logeado){
         {
           (login && !logeado && form3) && (
             <>
-              <Login state={login} changeState={closeLogin} setInvitado={setInvitado} />
+              <Login state={login} changeState={closeLogin} setInvitado={setInvitado} setLogeado={setLogeado} />
               <div className="begin__main-overlay"></div>
             </>
           )

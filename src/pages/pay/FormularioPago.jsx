@@ -284,7 +284,12 @@ const FormularioPago = ({ title, question, precio, setLogin, userInfo, changeUse
                 <p className={styleText}>{textoCodigo}</p>
             </div>
             <div className="pagar__buton-container">
+                <p>Vas a pagar un total de <b>${verificado ? 0 : precio}</b></p>
+                <p style={{textDecoration: "underline", fontSize: ".9rem"}}>Elige tu método de pago: </p>
                 <Checkout precio={verificado ? 0 : precio} title={title} tematica={tipo} dataSend={tipo === "embarazo" ? dataEmbarazo : (tipo === "bebe" ? dataBebe : dataPostparto)} userInfo={userInfo} question={question} verificar={requerimientos} />
+                {
+                    //botón de Transbank
+                }
             </div>
         </form>
     )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "./paico.css"
 
 class Checkout extends Component {
 
@@ -19,8 +18,8 @@ class Checkout extends Component {
             currency: "usd",
             amount: precio,
             country: "co",
-            confirmation: "https://api.mimanualdelbebe.com/api/pae/confirmation",
-            response: "https://paemimanualdelbebe.netlify.app",
+            confirmation: "https://api-dev.mimanualdelbebe.com/api/pae/confirmation",
+            response: "",
             extra1: JSON.stringify(userInfo),
             extra2: JSON.stringify(dataSend)
         };
@@ -32,10 +31,10 @@ class Checkout extends Component {
             <React.Fragment>
                 <button
                 type='button'
-                className='boton_paicos'
+                className='boton_paicos2'
                 onClick={this.openCheckout}
                 >
-                Ir a pagar ${this.props.precio}
+                Pagar con <b>Epayco</b>
                 </button>
             </React.Fragment>
         );

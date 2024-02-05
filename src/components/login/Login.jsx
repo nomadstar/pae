@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "./login.css";
 
-const Login = ({ state, changeState, setInvitado }) => {
+const Login = ({ state, changeState, setInvitado, setLogeado }) => {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
-    
+
     const [message, setMessage] = useState("");
     const [estiloText, setEstiloText] = useState({ color: "black" });
 
     const logearse = async () => {
+
         setEstiloText({ color: "black" });
         setMessage("Cargando...");
 
@@ -27,21 +28,33 @@ const Login = ({ state, changeState, setInvitado }) => {
             body: JSON.stringify(data)
         };
 
-        await fetch('https://api.mimanualdelbebe.com/api/user/login', options)
+        await fetch('https://api-dev.mimanualdelbebe.com/api/user/login', options)
             .then(response => response.json())
             .then(response => {
-                //se logra
+                if(response.msg === "Error de credenciales!"){
+                    setEstiloText({ color: "red" });
+                    setMessage("Error de credenciales.");
+                }else if(response.token != ""){
+                    const token = response.token
+                    const user = response.user
 
-                //cambiar variable de logeado que depende del Token
-                changeState();
-                setInvitado(false);
+                    localStorage.setItem('miToken', token)
+                    localStorage.setItem('user',user)
 
-                console.log(response)
+                    changeState();
+                    setInvitado(false);
+                    setLogeado(true);
+
+                    return;
+                }else{
+                    setEstiloText({ color: "red" });
+                    setMessage("No se ha podido establecer sesión.");
+                    console.log(response)
+                }
             })
             .catch(err => {
-                //no se logra
                 setEstiloText({ color: "red" });
-                setMessage("No se ha podido establecer sesión.");
+                setMessage("No se ha podido establecer sesión (servidor).");
             });
     };
 
@@ -74,6 +87,7 @@ const Login = ({ state, changeState, setInvitado }) => {
                     onClick={() => {
                         changeState();
                         setInvitado(true);
+                        window.location.reload();
                     }}
                 >
                     Seguir como invitado
