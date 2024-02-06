@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./login.css";
 
-const Login = ({ state, changeState, setInvitado, setLogeado }) => {
+const Login = ({ state, changeState, setInvitado, setLogeado, openRegister }) => {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
 
@@ -81,17 +81,19 @@ const Login = ({ state, changeState, setInvitado, setLogeado }) => {
                 <button className="button-login" onClick={logearse}>
                     Inicia sesión
                 </button>
-                <p style={estiloText}>{message}</p>
+
                 <button
                     className="invitado-seguir"
                     onClick={() => {
                         changeState();
                         setInvitado(true);
-                        window.location.reload();
                     }}
                 >
                     Seguir como invitado
                 </button>
+
+                <p style={estiloText}>{message}</p>
+                <a style={{cursor: "pointer", textDecoration: "underline", fontSize: "1.1rem"}} onClick={openRegister} >Crearme una cuenta</a>
             </div>
             {state && <div className="overlay__fondo"></div>}
         </>

@@ -4,6 +4,7 @@ import images from "../../assets/sintoms"
 import { FaCheckCircle } from "react-icons/fa"
 import FormularioPago from "./FormularioPago"
 import Login from "../../components/login/Login"
+import Register from "../../components/register/Register"
 import { SintomasMadre, SintomasBebe, SintomasPostparto } from './Sintomas'
 import "./pay.css"
 
@@ -202,6 +203,18 @@ if(logeado){
 
   const [invitado, setInvitado] = useState(false);
 
+  const [registrarse, setRegistrarse] = useState(false);
+
+  const openLogin = () => {
+    setLogin(true);
+    setRegistrarse(false);
+  }
+
+  const openRegister = () => {
+    setLogin(false);
+    setRegistrarse(true);
+  }
+
   return (
     <main className="begin__main">
 
@@ -375,7 +388,15 @@ if(logeado){
         {
           (login && !logeado && form3) && (
             <>
-              <Login state={login} changeState={closeLogin} setInvitado={setInvitado} setLogeado={setLogeado} />
+              <Login state={login} changeState={closeLogin} setInvitado={setInvitado} setLogeado={setLogeado} openRegister={openRegister} />
+              <div className="begin__main-overlay"></div>
+            </>
+          )
+        }
+        {
+          registrarse && (
+            <>
+              <Register state={registrarse} openLogin={openLogin} />
               <div className="begin__main-overlay"></div>
             </>
           )
