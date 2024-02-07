@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./login.css";
+import "../login/login.css";
 
-const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => {
+const Login = ({ state, changeState, openRegister }) => {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,6 +18,8 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
             password: password
         };
 
+        console.log("email: ", user)
+
         const options = {
             method: 'POST',
             headers: {
@@ -32,6 +34,9 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
                 if(response.msg === "Error de credenciales!"){
                     setEstiloText({ color: "red" });
                     setMessage("Error de credenciales.");
+                }else if(email === "" || password === ""){
+                    setEstiloText({ color: "red" });
+                    setMessage("Rellene los campos.");
                 }else if(response.token != ""){
                     const token = response.token
 
@@ -46,30 +51,20 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
                     localStorage.setItem('age',usuario.user_email)
 
                     console.log("Guardando en local: ",usuario.user_email)
-
                     localStorage.setItem('username',usuario.user_login)
 
-                    console.log(usuario);
-
-                    changeState();
-                    setInvitado(false);
-                    setLogeado(true);
-
+                    changeState(false);
+                    window.location.reload();
                     return;
-                }else if(user == "" || password == ""){
+                }else{
                     setEstiloText({ color: "red" });
-                    setMessage("Rellene los campos.");
-                }
-                else{
-                    setEstiloText({ color: "red" });
-                    
                     setMessage("No se ha podido establecer sesión.");
                     console.log(response)
                 }
             })
             .catch(err => {
                 setEstiloText({ color: "red" });
-                setMessage("No se ha podido establecer sesión (servidor).");
+                setMessage("No se ha podido establecer sesión.");
             });
     };
 
@@ -100,15 +95,14 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
                 <button
                     className="invitado-seguir"
                     onClick={() => {
-                        changeState();
-                        setInvitado(true);
+                        changeState(false);
                     }}
                 >
                     Seguir como invitado
                 </button>
 
                 <p style={estiloText}>{message}</p>
-                <a style={{cursor: "pointer", textDecoration: "underline", fontSize: "1.1rem"}} onClick={openRegister} >Crearme una cuenta</a>
+                <a style={{cursor: "pointer", textDecoration: "underline", fontSize: "1.1rem"}} onClick={()=>{openRegister(true)}} >Crearme una cuenta</a>
             </div>
             {state && <div className="overlay__fondo"></div>}
         </>

@@ -1,3 +1,36 @@
+.close__sesion-button {
+    padding: .5rem 1rem;
+    background: var(--celeste-color);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0;
+}
+
+.button-next button {
+    text-decoration: none;
+    color: #fff;
+    background: var(--celeste-color);
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.logeado__container {
+    width: 100%;
+    padding-top: 1rem;
+    color: var(--celeste-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+}
+
+
+/**/
 .begin__main {
     position: relative;
     width: 100%;

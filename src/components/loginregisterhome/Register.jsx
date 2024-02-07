@@ -1,12 +1,13 @@
 import { useState } from "react";
 import "../login/login.css";
 
-const Register = ({ state, setRegistrarse, openLogin, changeLogin }) => {
+const Register = ({ state, openLogin, changeState, setRegistrarse }) => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [lastname, setLastName] = useState("");
     const [age, setAge] = useState("");
+    const [password, setPassword] = useState("");
+
     const [showPassword, setShowPassword] = useState(false);
 
     const handleTogglePasswordVisibility = () => {
@@ -108,15 +109,17 @@ const Register = ({ state, setRegistrarse, openLogin, changeLogin }) => {
                 <button className="button-login" onClick={registrarse}>
                     Registrar cuenta
                 </button>
-                <button
+                <div>
+                    <button
                     className="invitado-seguir"
                     onClick={() => {
-                        changeLogin(false);
-                        setRegistrarse(false);
+                        changeState(false);
+                        openLogin(false);
                     }}
                     >Seguir como invitado</button>
+                </div>
                 <p style={estiloText}>{message}</p>
-                <p>Ya tengo una cuenta. <b style={{ textDecoration: "underline", cursor: "pointer" }} onClick={openLogin}>Iniciar sesión.</b> </p>
+                <p>Ya tengo una cuenta. <b style={{ textDecoration: "underline", cursor: "pointer" }} onClick={()=>{openLogin(true)}}>Iniciar sesión.</b> </p>
             </div>
             {state && <div className="overlay__fondo"></div>}
         </>

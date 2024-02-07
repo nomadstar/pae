@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Checkout from "../../components/epayco/Checkout"
 import "./styleform.css"
 
-const FormularioPago = ({ title, question, precio, setLogin, userInfo, changeUserInfo, changeState, tipo, dataEmbarazo, dataPostparto, dataBebe, changeEmbarazo, changeBebe, changePostparto, estaLogeado }) => {
+const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, question, precio, setLogin, userInfo, changeUserInfo, changeState, tipo, dataEmbarazo, dataPostparto, dataBebe, changeEmbarazo, changeBebe, changePostparto, estaLogeado }) => {
 
     const [verificado, setVerificado] = useState(false);
     const [textoCodigo, setTextoCodigo] = useState("");
@@ -31,85 +31,20 @@ const FormularioPago = ({ title, question, precio, setLogin, userInfo, changeUse
     //funcion que verifica si es que no ha llegado algo o hay algun error
     const [messageError, setMessageError]  = useState("");
 
-    const requerimientos = () => {
-        var aprobado = true;
+    useEffect(() => {
+        const token = localStorage.getItem('miToken');
 
-        if(!logeado){
-            if(userInfo.name == ""){
-                aprobado = false;
-            }else if(userInfo.lastname == ""){
-                aprobado = false;
-            }else if(userInfo.age == ""){
-                aprobado = false;
-            }else if(userInfo.email == ""){
-                aprobado = false;
-            }
+        console.log("Trying!")
+        console.log("Logeado es: ",login)
+
+        if (token) {
+            //agregar Info automática al usuario: email, name, lastname, age
+            agregarAutomaticaUsuario("email", localStorage.getItem('email'));
+            agregarAutomaticaUsuario("name", localStorage.getItem('name'));
+            agregarAutomaticaUsuario("lastname", localStorage.getItem('lastname'));
+            agregarAutomaticaUsuario("age", localStorage.getItem('age'));
         }
-
-        if(tipo == "embarazo"){
-            if(question){
-                if(dataEmbarazo.question == ""){
-                    aprobado = false;
-                }
-            }
-
-            if(dataEmbarazo.birthmom == ""){
-                aprobado = false;
-            }else if(dataEmbarazo.birthmom == ""){
-                aprobado = false;
-            }else if(dataEmbarazo.birthdate == ""){
-                aprobado = false;
-            }else if(dataEmbarazo.birthtype == ""){
-                aprobado = false;
-            }else if(dataEmbarazo.momheight == ""){
-                aprobado = false;
-            }else if(dataEmbarazo.momweight == ""){
-                aprobado = false;
-            }else if(dataEmbarazo.pregnantbefore == ""){
-                aprobado = false;
-            }
-        }else if(tipo == "bebe"){
-            if(question){
-                if(dataBebe.question == ""){
-                    aprobado = false;
-                }
-            }
-
-            if(dataBebe.namebaby == ""){
-                aprobado = false;
-            }else if(dataBebe.babyweight == ""){
-                aprobado = false;
-            }else if(dataBebe.birthbaby == ""){
-                aprobado = false;
-            }else if(dataBebe.birthtype == ""){
-                aprobado = false;
-            }else if(dataBebe.babyheight == ""){
-                aprobado = false;
-            }
-
-        }else if(tipo == "postparto"){
-            if(question){
-                if(dataPostparto.question == ""){
-                    aprobado = false;
-                }
-            }
-
-            if(dataPostparto.lastbirthdate == ""){
-                aprobado = false;
-            }else if(dataPostparto.birthtype == ""){
-                aprobado = false;
-            }else if(dataPostparto.babyheight == ""){
-                aprobado = false;
-            }else if(dataPostparto.babyweight == ""){
-                aprobado = false;
-            }else if(dataPostparto.pregnantbefore == ""){
-                aprobado = false;
-            }
-
-        }
-
-        return aprobado;
-    }
+    }, [login])
 
     return (
         <form className="teleconsulta_pay">
@@ -286,7 +221,7 @@ const FormularioPago = ({ title, question, precio, setLogin, userInfo, changeUse
             <div className="pagar__buton-container">
                 <p>Vas a pagar un total de <b>${verificado ? 0 : precio}</b></p>
                 <p style={{textDecoration: "underline", fontSize: ".9rem"}}>Elige tu método de pago: </p>
-                <Checkout precio={verificado ? 0 : precio} title={title} tematica={tipo} dataSend={tipo === "embarazo" ? dataEmbarazo : (tipo === "bebe" ? dataBebe : dataPostparto)} userInfo={userInfo} question={question} verificar={requerimientos} />
+                <Checkout precio={verificado ? 0 : precio} title={title} tematica={tipo} dataSend={tipo === "embarazo" ? dataEmbarazo : (tipo === "bebe" ? dataBebe : dataPostparto)} userInfo={userInfo} question={question} />
                 {
                     //botón de Transbank
                 }

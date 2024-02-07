@@ -3,12 +3,23 @@ import { Link } from 'react-router-dom'
 import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import logo from "../../assets/logo.webp"
+import Login from "../login/Login"
+import Register from "../register/Register"
 import './navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ changeLogin, changeRegister }) => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
+
+    const [nickname, setNickName] = useState("");
+
+    useEffect(() => {
+        const token = localStorage.getItem('miToken');
+        if (token) {
+            setNickName(localStorage.getItem('username'));
+        }
+    }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,22 +49,26 @@ const Navbar = () => {
                 <a href='#pros'>Profesionales</a>
                 <a href='#comments'>Comentarios</a>
             </div>
-            <div className='footer__contact-container special'>
-                <div className='footer__contact-c2'>
-                    <a href="https://www.facebook.com/Mimanualdelbebeyembarazo" target="_blank" rel="noopener noreferrer">
-                        <FaFacebook size={32} />
-                    </a>
-                    <a href="https://www.instagram.com/mimanualdelbebe/" target="_blank" rel="noopener noreferrer">
-                        <FaInstagram size={32} />
-                    </a>
-                    <a href="https://www.youtube.com/user/Mimanualdelbebe" target="_blank" rel="noopener noreferrer">
-                        <FaYoutube size={32} />
-                    </a>
-                    <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fmimanualdelbebe" target="_blank" rel="noopener noreferrer">
-                        <FaTwitter size={32} />
-                    </a>
-                </div>
-            </div>
+            {
+                    nickname != "" ? (
+                        <div className="flex gap-3 justify-center items-center">
+                            <button className='button_sesion' onClick={() => {
+                                localStorage.removeItem('miToken');
+                                window.location.reload();
+                            }}>Cerrar sesión</button>
+                            <a className="text-md text-white">Logeado - <b>{nickname}</b></a>
+                            <span className="icon-[material-symbols--logout]"></span>
+                        </div>
+                    ) : ( 
+                    <div className="flex gap-2">
+                        <button className='button_sesion' onClick={()=>{
+                            changeLogin(true);
+                            changeRegister(false);
+                        }} >Iniciar sesión</button>
+                        <span className="icon-[material-symbols--login]"></span>
+                    </div>
+                    )
+                }
             <div className='app__navbar-smallscreen'>
                 <GiHamburgerMenu
                     style={{ cursor: 'pointer' }}
@@ -97,7 +112,7 @@ const Navbar = () => {
                 )}
             </div>
 
-            <div className='app__navbar-buttons-container'>
+            <div style={{color: "white"}} className='app__navbar-buttons-container'>
                 <a className='app__navbar-buttons-container-link' href='https://www.mimanualdelbebe.com'>
                     Mi manual del bebé
                 </a>
