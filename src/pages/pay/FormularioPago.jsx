@@ -16,7 +16,7 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
         setTimeout(() => {
             // Aquí iría tu lógica de llamada al backend y recibir respuesta
             //la variable del cuppon se llama: cuppon
-            //debes cambiar con setVerificado cuando se verifique
+            //debes cambiar con setVerificado cuando se verifique, verificado indica si pueda usar cupón
 
             if (verificado) {
                 setStyleText("style__text-blue");
@@ -29,13 +29,13 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
     };
 
     //funcion que verifica si es que no ha llegado algo o hay algun error
-    const [messageError, setMessageError]  = useState("");
+    const [messageError, setMessageError] = useState("");
 
     useEffect(() => {
         const token = localStorage.getItem('miToken');
 
         console.log("Trying!")
-        console.log("Logeado es: ",login)
+        console.log("Logeado es: ", login)
 
         if (token) {
             //agregar Info automática al usuario: email, name, lastname, age
@@ -50,7 +50,7 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
         <form className="teleconsulta_pay">
             <div className="pagar__container-second">
                 <h3 className="h3_teleconsulta">{title}</h3>
-                <b onClick={()=>{
+                <b onClick={() => {
                     changeState();
                     setLogin(false);
                 }}>&times;</b>
@@ -59,34 +59,34 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
             {
                 !estaLogeado && (
                     <div className="input__container">
-                <label htmlFor="name">Nombre madre</label>
-                <input type="text" id="name" name="name" value={userInfo.name} onChange={changeUserInfo} required />
-            </div>
+                        <label htmlFor="name">Nombre madre</label>
+                        <input type="text" id="name" name="name" value={userInfo.name} onChange={changeUserInfo} required />
+                    </div>
                 )
             }
             {
                 !estaLogeado && (
                     <div className="input__container">
-                <label htmlFor="lastname">Apellido madre</label>
-                <input type="text" id="lastname" name="lastname" value={userInfo.lastname} onChange={changeUserInfo} required />
-            </div>
+                        <label htmlFor="lastname">Apellido madre</label>
+                        <input type="text" id="lastname" name="lastname" value={userInfo.lastname} onChange={changeUserInfo} required />
+                    </div>
                 )
             }
             {
                 !estaLogeado && (
                     <div className="input__container">
-                <label htmlFor="age">Edad madre</label>
-                <input type="text" id="age" name="age" value={userInfo.age} onChange={changeUserInfo} required />
-            </div>
+                        <label htmlFor="age">Edad madre</label>
+                        <input type="text" id="age" name="age" value={userInfo.age} onChange={changeUserInfo} required />
+                    </div>
                 )
             }
 
             {
                 !estaLogeado && (
                     <div className="input__container">
-                <label htmlFor="email">Correo madre</label>
-                <input type="email" name="email" id="email" value={userInfo.email} onChange={changeUserInfo} required />
-            </div>
+                        <label htmlFor="email">Correo madre</label>
+                        <input type="email" name="email" id="email" value={userInfo.email} onChange={changeUserInfo} required />
+                    </div>
                 )
             }
 
@@ -218,13 +218,29 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
                 <button type="button" onClick={canjearCodigo}>Canjear código</button>
                 <p className={styleText}>{textoCodigo}</p>
             </div>
-            <div className="pagar__buton-container">
+            <div className="pagar__buton-container flex flex-col w-full justify-center items-center gap-1">
                 <p>Vas a pagar un total de <b>${verificado ? 0 : precio}</b></p>
-                <p style={{textDecoration: "underline", fontSize: ".9rem"}}>Elige tu método de pago: </p>
+                <p className="underline text-md">Elige tu método de pago: </p>
                 <Checkout precio={verificado ? 0 : precio} title={title} tematica={tipo} dataSend={tipo === "embarazo" ? dataEmbarazo : (tipo === "bebe" ? dataBebe : dataPostparto)} userInfo={userInfo} question={question} />
-                {
-                    //botón de Transbank
-                }
+
+                <button className="btnn w-10/12 md:w-1/3
+                border-none rounded text-white px-4 py-2" onClick={
+                    () => {
+                        if (verificado) {
+                            //mandar los correos altiro y mandar el cuppón, la variable se llama cuppon
+                        } else {
+                            setMessageError("No has ingresado un código válido.");
+                        }
+                    }
+                }><p>Pagar con el <b>código</b></p> </button>
+
+                <button className="btnn w-10/12 md:w-1/3  border-none rounded text-white px-4 py-2" onClick={
+                    () => {
+                        //boton transbank
+                    }
+                }><p>Pagar con <b>Transbank</b></p> </button>
+
+                <b style={{ color: "red" }}>{messageError}</b>
             </div>
         </form>
     )

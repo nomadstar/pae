@@ -319,6 +319,7 @@ const Pay = () => {
               <div className="begin__form-2">
                           {
                 nickname !== "" ? (<div className="text-center mt-2">
+                  <div>Logeado con <b>{nickname}</b></div>
                   <button className="close__sesion-button" onClick={() => {
                   localStorage.removeItem('miToken');
                   window.location.reload();

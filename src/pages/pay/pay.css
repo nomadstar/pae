@@ -307,27 +307,12 @@
     color: var(--celeste-color);
 }
 
-.pagar__buton-container {
-    width: 100%;
-    gap: .5rem;
-    text-align: center;
-    flex-direction: column;
-}
-
-.pagar__buton-container button {
-    padding: 1rem;
-    margin-top: 1.2rem;
-    border: none;
+.btnn {
     background: var(--celeste-color);
-    font-size: 1.1rem;
-    color: #fff;
-    border-radius: 5px;
-    width: 40%;
-    cursor: pointer;
-    transition: background .2s ease-in-out;
+    margin: 1rem 0;
 }
 
-.pagar__buton-container button:hover {
+.btnn:hover {
     background: rgb(2, 132, 136);
 }
 .title__pregunta {
@@ -373,13 +358,6 @@
 
 .fecha_div input:active, .fecha_div input:focus {
     outline: 1px solid var(--celeste-color);
-}
-
-.pagar__buton-container {
-    margin: 2rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 @media screen and (max-width: 1350px ){
