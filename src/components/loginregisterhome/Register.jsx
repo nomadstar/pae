@@ -41,7 +41,8 @@ const Register = ({ state, openLogin, changeState, setRegistrarse }) => {
         await fetch('https://api-dev.mimanualdelbebe.com/api/user/register', options)
             .then(response => response.json())
             .then(response => {
-                console.log(response)
+                console.log("Enviado: ", data);
+                console.log("Recibido: ",response);
                 if (response && response.id) {
                     setEstiloText({ color: "blue" });
                     setMessage("Cuenta creada.");

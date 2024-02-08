@@ -71,7 +71,7 @@
 }
 
 .thanks__container h1 {
-    font-size: 3.5rem;
+    font-size: 5.5rem;
     color: var(--celeste-color);
     text-align: center;
 }
@@ -94,7 +94,7 @@
 
 @media screen and (max-width: 750px) {
     .thanks__container h1 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
     }
     .thanks__container p {
         font-size: 1rem;

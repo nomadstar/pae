@@ -12,6 +12,8 @@ class Checkout extends Component {
 
         const { title, precio, question, userInfo, dataSend } = this.props;
 
+        console.log(userInfo, "", dataSend);
+
         let data = {
             name: title,
             description: `Servicio temática ${question ? "PREGUNTA" : "TELECONSULTA"}`,

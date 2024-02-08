@@ -1,3 +1,5 @@
+import "./pages.css"
+
 const ThanksT = () => {
     return (
         <div className='thanks__container'>

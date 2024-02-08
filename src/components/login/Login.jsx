@@ -41,20 +41,14 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
                     localStorage.setItem('miToken', token)
                     localStorage.setItem('user',usuario)
                     localStorage.setItem('email',usuario.user_email)
-                    localStorage.setItem('name',usuario.user_email)
-                    localStorage.setItem('lastname',usuario.user_email)
-                    localStorage.setItem('age',usuario.user_email)
-
-                    console.log("Guardando en local: ",usuario.user_email)
-
-                    localStorage.setItem('username',usuario.user_login)
-
-                    console.log(usuario);
+                    localStorage.setItem('name',usuario.wp_usermeta[0].meta_value)
+                    localStorage.setItem('lastname',usuario.wp_usermeta[1].meta_value)
+                    //FALTA EDAD
+                    //localStorage.setItem('age',usuario.user_email)
 
                     changeState();
                     setInvitado(false);
                     setLogeado(true);
-
                     return;
                 }else if(user == "" || password == ""){
                     setEstiloText({ color: "red" });
@@ -77,7 +71,7 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
         <>
             <div className="login__container">
                 <h1>Inicia sesión</h1>
-                <p>Usuario</p>
+                <p>Email</p>
                 <input
                     type="text"
                     id="user"

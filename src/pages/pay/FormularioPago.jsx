@@ -2,12 +2,30 @@ import { useEffect, useState } from "react"
 import Checkout from "../../components/epayco/Checkout"
 import "./styleform.css"
 
-const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, question, precio, setLogin, userInfo, changeUserInfo, changeState, tipo, dataEmbarazo, dataPostparto, dataBebe, changeEmbarazo, changeBebe, changePostparto, estaLogeado }) => {
+const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario, title, question, precio, setLogin, userInfo, changeUserInfo, changeState, tipo, dataEmbarazo, dataPostparto, dataBebe, changeEmbarazo, changeBebe, changePostparto }) => {
 
     const [verificado, setVerificado] = useState(false);
     const [textoCodigo, setTextoCodigo] = useState("");
     const [styleText, setStyleText] = useState("style__text-black");
     const [cuppon, setCuppon] = useState("");
+
+    const call = async()=>{
+        //enviar ID
+        const options = {
+            method: 'GET'
+        };
+        
+        await fetch('https://api-dev.mimanualdelbebe.com/api/users/1153658', options)
+            .then(response => response.json())
+            .then(response => {
+                console.log(response.wp_usermeta[0].meta_value);
+                console.log(response.wp_usermeta[1].meta_value);
+                console.log(response.user_email);
+            })
+            .catch(err => {
+                console.log("lol")
+            });
+    }
 
     const canjearCodigo = async () => {
         setStyleText("style__text-black")
@@ -50,6 +68,11 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
         <form className="teleconsulta_pay">
             <div className="pagar__container-second">
                 <h3 className="h3_teleconsulta">{title}</h3>
+                {
+                    /*
+                    <button onClick={call} type="button">Test</button>
+                    */
+                }
                 <b onClick={() => {
                     changeState();
                     setLogin(false);
@@ -57,7 +80,7 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
             </div>
 
             {
-                !estaLogeado && (
+                !logeado && (
                     <div className="input__container">
                         <label htmlFor="name">Nombre madre</label>
                         <input type="text" id="name" name="name" value={userInfo.name} onChange={changeUserInfo} required />
@@ -65,7 +88,7 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
                 )
             }
             {
-                !estaLogeado && (
+                !logeado && (
                     <div className="input__container">
                         <label htmlFor="lastname">Apellido madre</label>
                         <input type="text" id="lastname" name="lastname" value={userInfo.lastname} onChange={changeUserInfo} required />
@@ -73,7 +96,7 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
                 )
             }
             {
-                !estaLogeado && (
+                !logeado && (
                     <div className="input__container">
                         <label htmlFor="age">Edad madre</label>
                         <input type="text" id="age" name="age" value={userInfo.age} onChange={changeUserInfo} required />
@@ -82,7 +105,7 @@ const FormularioPago = ({ login, registrarse, agregarAutomaticaUsuario, title, q
             }
 
             {
-                !estaLogeado && (
+                !logeado && (
                     <div className="input__container">
                         <label htmlFor="email">Correo madre</label>
                         <input type="email" name="email" id="email" value={userInfo.email} onChange={changeUserInfo} required />
