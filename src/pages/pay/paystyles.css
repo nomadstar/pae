@@ -1,0 +1,47 @@
+.main__content {
+    flex: 1;
+}
+
+.form1__contenedor {
+    outline: 1px solid var(--celeste-color);
+    border-radius: 1rem;
+}
+
+.contenedor {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.button-form {
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    background: var(--celeste-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.title {
+    color: var(--celeste-color);
+}
+
+.bg-celeste {
+    background: var(--celeste-color);
+}
+
+.border-celeste {
+    border: 1px solid var(--celeste-color);
+}
+
+.text-profile {
+    font-size: .9rem;
+}
+
+.footer-down {
+    bottom: 0;
+}

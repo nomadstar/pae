@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --celeste-color: rgb(45, 172, 201);
+  --celeste-color: rgb(85, 187, 210);
   --celeste-background: radial-gradient(circle at 50% 50%, rgba(62, 177, 203, 1) 0%, rgba(92, 226, 255, 1) 100%);
   --font-color: rgb(77, 77, 77);
 }

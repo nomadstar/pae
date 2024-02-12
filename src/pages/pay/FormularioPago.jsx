@@ -65,23 +65,16 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
     }, [login])
 
     return (
-        <form className="teleconsulta_pay">
-            <div className="pagar__container-second">
-                <h3 className="h3_teleconsulta">{title}</h3>
-                {
-                    /*
-                    <button onClick={call} type="button">Test</button>
-                    */
-                }
-                <b onClick={() => {
+        <form className="flex flex-col gap-2 justify-center items-center pt-8 relative">
+                <h3 className="title text-3xl text-center">{title}</h3>
+                <b className="top-1 right-1 absolute text-2xl cursor-pointer" onClick={() => {
                     changeState();
                     setLogin(false);
                 }}>&times;</b>
-            </div>
 
             {
                 !logeado && (
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="name">Nombre madre</label>
                         <input type="text" id="name" name="name" value={userInfo.name} onChange={changeUserInfo} required />
                     </div>
@@ -89,7 +82,7 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
             }
             {
                 !logeado && (
-                    <div className="input__container">
+                    <div className="input__container  w-full md:w-1/2">
                         <label htmlFor="lastname">Apellido madre</label>
                         <input type="text" id="lastname" name="lastname" value={userInfo.lastname} onChange={changeUserInfo} required />
                     </div>
@@ -97,7 +90,7 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
             }
             {
                 !logeado && (
-                    <div className="input__container">
+                    <div className="input__container  w-full md:w-1/2">
                         <label htmlFor="age">Edad madre</label>
                         <input type="text" id="age" name="age" value={userInfo.age} onChange={changeUserInfo} required />
                     </div>
@@ -106,7 +99,7 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
 
             {
                 !logeado && (
-                    <div className="input__container">
+                    <div className="input__container  w-full md:w-1/2">
                         <label htmlFor="email">Correo madre</label>
                         <input type="email" name="email" id="email" value={userInfo.email} onChange={changeUserInfo} required />
                     </div>
@@ -115,27 +108,27 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
 
             {tipo === "embarazo" &&
                 <>
-                    <div className="input__container">
+                    <div className="input__container  w-full md:w-1/2">
                         <label htmlFor="birthmom">Fecha de nacimiento de la madre</label>
                         <input type="text" id="birthmom" name="birthmom" value={dataEmbarazo.birthmom} onChange={changeEmbarazo} required />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="birthdate">Fecha estimada del parto</label>
                         <input type="text" id="birthdate" name="birthdate" value={dataEmbarazo.birthdate} onChange={changeEmbarazo} required />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="birthtype">Tipo de embarazo (simple / múltiple)</label>
                         <input type="text" id="birthtype" name="birthtype" value={dataEmbarazo.birthtype} onChange={changeEmbarazo} required />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="momheight">Estatura de la madre en cm (opcional)</label>
                         <input type="text" id="momheight" name="momheight" value={dataEmbarazo.momheight} onChange={changeEmbarazo} />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="momweight">Peso de la madre en kg (opcional)</label>
                         <input type="text" id="momweight" name="momweight" value={dataEmbarazo.momweight} onChange={changeEmbarazo} />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="pregnantbefore">He estado embarazada antes (sí / no)</label>
                         <input type="text" id="pregnantbefore" name="pregnantbefore" value={dataEmbarazo.pregnantbefore} onChange={changeEmbarazo} />
 
@@ -145,23 +138,23 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
 
             {tipo === "bebe" &&
                 <>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="namebaby">Nombre del bebé</label>
                         <input type="text" id="namebaby" name="namebaby" value={dataBebe.namebaby} onChange={changeBebe} />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="birthbaby">Fecha de nacimiento del bebé</label>
                         <input type="text" name="birthbaby" value={dataEmbarazo.birthbaby} onChange={changeBebe} required />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="birthtypebaby">Tipo de parto (natural / cesárea)</label>
                         <input type="text" name="birthtype" id="birthtype" value={dataBebe.birthtype} onChange={changeBebe} />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="babyheight">Estatura del bebé en cm (opcional)</label>
                         <input type="text" id="babyheight" name="babyheight" value={dataBebe.babyheight} onChange={changeBebe} />
                     </div>
-                    <div className="input__container">
+                    <div className="input__container w-full md:w-1/2">
                         <label htmlFor="babyweight">Peso del bebé en kg (opcional)</label>
                         <input type="text" id="babyweight" name="babyweight" value={dataBebe.babyweight} onChange={changeBebe} />
                     </div>
@@ -195,40 +188,25 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
 
             {question &&
                 (<div className="contenedorpagar__pregunta">
+                    <h4 className="title text-center text-3xl" >¿Cuál es su pregunta?</h4>
                     {tipo === "embarazo" &&
                         (
-                            <>
-                                <h4 className="title__pregunta" >¿Cuál es su pregunta?</h4>
-                                <input type="text" name="question" placeholder="Ingrese su pregunta" id="question" value={dataEmbarazo.question} onChange={changeEmbarazo} /></>
+                            <input type="text" name="question" placeholder="Ingrese su pregunta" id="question" value={dataEmbarazo.question} onChange={changeEmbarazo} />
                         )
                     }
                     {tipo === "bebe" &&
                         (
-                            <>
-                                <label htmlFor="question">¿Cuál es su pregunta?</label>
-                                <input type="text" name="question" id="question" value={dataBebe.question} onChange={changeBebe} /></>
+                            <input type="text" name="question" id="question" value={dataBebe.question} onChange={changeBebe} />
                         )
                     }
 
                     {tipo === "postparto" &&
                         (
-                            <>
-                                <label htmlFor="question">¿Cuál es su pregunta?</label>
-                                <input type="text" name="question" id="question" value={dataPostparto.question} onChange={changePostparto} /></>
+                            <input type="text" name="question" id="question" value={dataPostparto.question} onChange={changePostparto} />
                         )
                     }
-
                 </div>
                 )}
-
-            {
-                /*
-                <div className="input__container-save">
-                <input type="checkbox" name="save_data" />
-                <p >Autorizo que guarden mis datos para futuras consultas.</p>
-                </div>
-                */
-            }
             <div className="codigo__container">
                 <h5>Código de invitación</h5>
                 <input
@@ -251,6 +229,7 @@ const FormularioPago = ({ logeado, login, registrarse, agregarAutomaticaUsuario,
                     () => {
                         if (verificado) {
                             //mandar los correos altiro y mandar el cuppón, la variable se llama cuppon
+                            precio = 0;
                         } else {
                             setMessageError("No has ingresado un código válido.");
                         }

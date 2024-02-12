@@ -1,27 +1,27 @@
 import images from "../../assets/sintoms";
 
-//todos los sintomas y el tipo
 const SintomasContainer = ({ tipo, sintomas, changeState }) => {
     return (
-        <article className="contenedor">
-            {sintomas.map((sintoma, index) => (
-                <div className="sintomas_container-content" key={index}>
-                    <div>
-                        <label htmlFor={`${tipo}${index + 1}`}>{sintoma.label}</label>
-                    </div>
-                    <div>
-                        <img src={sintoma.image} alt="sintoma" />
-                    </div>
-                    <input
-                        type="checkbox"
-                        id={`${tipo}${index + 1}`}
-                        name={"sintoms"}
-                        value={sintoma.label}
-                        onChange={changeState}
-                    />
-                </div>
-            ))}
-        </article>
+        <article className="flex flex-col items-center justify-center gap-6 md:flex-row md:flex-wrap md:w-1/2 md:items-start">
+    {sintomas.map((sintoma, index) => (
+        <div className="form1__contenedor p-4 flex flex-col items-center justify-center gap-2" key={index} style={{ height: "15rem", width: "20rem" }}>
+            <div>
+                <label className="font-bold" htmlFor={`${tipo}${index + 1}`}>{sintoma.label}</label>
+            </div>
+            <div style={{ width: "100%", height: "150px", overflow: "hidden" }}>
+                <img src={sintoma.image} alt="sintoma" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
+            <input
+                type="checkbox"
+                id={`${tipo}${index + 1}`}
+                name={"sintoms"}
+                value={sintoma.label}
+                onChange={changeState}
+            />
+        </div>
+    ))}
+</article>
+
     );
 };
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./login.css";
 
-const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => {
+const Login = ({ state, changeState, setInvitado, setLogeado, openRegister }) => {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
 
@@ -29,34 +29,33 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
         await fetch('https://api-dev.mimanualdelbebe.com/api/user/login', options)
             .then(response => response.json())
             .then(response => {
-                if(response.msg === "Error de credenciales!"){
+                if (response.msg === "Error de credenciales!") {
                     setEstiloText({ color: "red" });
                     setMessage("Error de credenciales.");
-                }else if(response.token != ""){
+                } else if (response.token != "") {
                     const token = response.token
 
                     //habra que cambiar esto, ahora llegará diferente la data, usuario.algo
                     const usuario = response.user
 
                     localStorage.setItem('miToken', token)
-                    localStorage.setItem('user',usuario)
-                    localStorage.setItem('email',usuario.user_email)
-                    localStorage.setItem('name',usuario.wp_usermeta[0].meta_value)
-                    localStorage.setItem('lastname',usuario.wp_usermeta[1].meta_value)
+                    localStorage.setItem('user', usuario)
+                    localStorage.setItem('email', usuario.user_email)
+                    localStorage.setItem('name', usuario.wp_usermeta[0].meta_value)
+                    localStorage.setItem('lastname', usuario.wp_usermeta[1].meta_value)
                     //FALTA EDAD
                     //localStorage.setItem('age',usuario.user_email)
 
                     changeState();
                     setInvitado(false);
                     setLogeado(true);
-                    return;
-                }else if(user == "" || password == ""){
+                } else if (user == "" || password == "") {
                     setEstiloText({ color: "red" });
                     setMessage("Rellene los campos.");
                 }
-                else{
+                else {
                     setEstiloText({ color: "red" });
-                    
+
                     setMessage("No se ha podido establecer sesión.");
                     console.log(response)
                 }
@@ -69,30 +68,36 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
 
     return (
         <>
-            <div className="login__container">
-                <h1>Inicia sesión</h1>
-                <p>Email</p>
-                <input
-                    type="text"
-                    id="user"
-                    name="user"
-                    value={user}
-                    onChange={(e) => setUser(e.target.value)}
-                />
-                <p>Contraseña</p>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button className="button-login" onClick={logearse}>
+            <div className="login__container flex flex-col items-center justify-center bg-white py-8 rounded-lg text-gray-700 gap-6">
+                <h4 className="title text-4xl">Inicia sesión</h4>
+                <div>
+                    <p>Email</p>
+                    <input
+                        type="text"
+                        id="user"
+                        name="user"
+                        value={user}
+                        onChange={(e) => setUser(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <p>Contraseña</p>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <button className="button-form" onClick={logearse}>
                     Inicia sesión
                 </button>
 
+                <p style={estiloText}>{message}</p>
+
                 <button
-                    className="invitado-seguir"
+                    className="underline"
                     onClick={() => {
                         changeState();
                         setInvitado(true);
@@ -101,8 +106,7 @@ const Login = ({state, changeState, setInvitado, setLogeado, openRegister }) => 
                     Seguir como invitado
                 </button>
 
-                <p style={estiloText}>{message}</p>
-                <a style={{cursor: "pointer", textDecoration: "underline", fontSize: "1.1rem"}} onClick={openRegister} >Crearme una cuenta</a>
+                <a style={{ cursor: "pointer", textDecoration: "underline", fontSize: "1.1rem" }} onClick={openRegister} >Crearme una cuenta</a>
             </div>
             {state && <div className="overlay__fondo"></div>}
         </>

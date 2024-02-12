@@ -146,16 +146,6 @@
     align-items: center;
 }
 
-.contenedor {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 70%;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
 .contenedor-imagenes {
     display: flex;
     margin-top: 2rem;

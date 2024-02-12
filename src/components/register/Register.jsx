@@ -41,7 +41,7 @@ const Register = ({ state, setRegistrarse, openLogin, changeLogin }) => {
             .then(response => response.json())
             .then(response => {
                 console.log("Enviado: ", data);
-                console.log("Recibido: ",response);
+                console.log("Recibido: ", response);
                 if (response && response.id) {
                     setEstiloText({ color: "blue" });
                     setMessage("Cuenta creada.");
@@ -58,65 +58,77 @@ const Register = ({ state, setRegistrarse, openLogin, changeLogin }) => {
 
     return (
         <>
-            <div className="login__container">
-                <h1>Registro</h1>
+            <div className="login__container flex flex-col items-center justify-center bg-white py-8 rounded-lg text-gray-700 gap-2">
+                <h4 className="title text-4xl mb-2">Registro</h4>
 
-                <p>Nombre</p>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <p>Apellido</p>
-                <input
-                    type="text"
-                    id="lastname"
-                    name="lastname"
-                    value={lastname}
-                    onChange={(e) => setLastName(e.target.value)}
-                />
-                <p>Edad</p>
-                <input
-                    type="text"
-                    id="age"
-                    name="age"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                />
-                <p>Email</p>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <p>Contraseña</p>
-                <div style={{display: "flex", gap: "4"}}>
+                <div>
+                    <p>Nombre</p>
                     <input
-                        type={showPassword ? 'text' : 'password'}
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
-                    <button style={{border: "none", background: "none", cursor: "pointer", marginLeft: ".2rem", textDecoration: "underline"}} onClick={handleTogglePasswordVisibility}>
-                        {showPassword ? 'Ocultar' : 'Mostrar'}
-                    </button>
                 </div>
-                <button className="button-login" onClick={registrarse}>
+                <div>
+                    <p>Apellido</p>
+                    <input
+                        type="text"
+                        id="lastname"
+                        name="lastname"
+                        value={lastname}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <p>Edad</p>
+                    <input
+                        type="text"
+                        id="age"
+                        name="age"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <p>Email</p>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <p>Contraseña</p>
+                    <div style={{ display: "flex", gap: "4" }}>
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <button className="relative" onClick={handleTogglePasswordVisibility}>
+                            {showPassword ? <span className="absolute left-1 top-0 icon-[mdi--hide-outline]"></span> : <span className="absolute left-1 top-0 icon-[mdi--show-outline]"></span>}
+                        </button>
+                    </div>
+                </div>
+                <button className="button-form my-4" onClick={registrarse}>
                     Registrar cuenta
                 </button>
+
+                <p style={estiloText}>{message}</p>
+
                 <button
-                    className="invitado-seguir"
+                    className="underline"
                     onClick={() => {
                         changeLogin(false);
                         setRegistrarse(false);
                     }}
-                    >Seguir como invitado</button>
-                <p style={estiloText}>{message}</p>
+                >Seguir como invitado</button>
                 <p>Ya tengo una cuenta. <b style={{ textDecoration: "underline", cursor: "pointer" }} onClick={openLogin}>Iniciar sesión.</b> </p>
             </div>
             {state && <div className="overlay__fondo"></div>}

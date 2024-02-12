@@ -458,7 +458,7 @@
 
 /*footer*/
 .footer__container {
-    background: var(--celeste-background);
+    background: var(--celeste-color);
     color: #fff;
     display: flex;
     align-items: flex-start;
