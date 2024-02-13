@@ -1,15 +1,14 @@
-import fotoPerfilNula from "../assets/nofoto.webp"
+import fotoPerfilNula from "../../assets/nofoto.webp"
 
-const ProfileFoto = ({ imagen = "", name = "NOMBRE DE USUARIO" }) => {
+const ProfileFoto = ({ imagen = "", name}) => {
     return (
-        <div className='profilefoto__container'>
-            <div className="profilefoto__container-image">
+        <div className='flex flex-col items-center justify-center w-full mb-6'>
+            <div className=" w-32">
                 <img src={imagen === "" ? fotoPerfilNula : imagen} alt="foto de perfil" />
             </div>
             <div>
-                <h4 style={{textAlign: "center"}}>{name}</h4>
+                <h4 className="text-center text-lg font-semibold">{name}</h4>
             </div>
-            <button>SALIR</button>
         </div>
     )
 }

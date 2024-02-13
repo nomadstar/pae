@@ -1,0 +1,38 @@
+/*general: profile*/
+.profile__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profile__main {
+    display: flex;
+    width: 100%;
+    height: 70vh;
+}
+
+.profile__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile__aside {
+    border-right: 1px solid rgba(60, 30, 12, 0.277);
+}
+
+.input__cuppon {
+    outline: 1px solid var(--celeste-color);
+    border-radius: 5px;
+    padding: .2rem .4rem;
+    color: gray;
+}
+
+.button__cuppon {
+    background: var(--celeste-color);
+    color: white;
+    padding: .3rem .7rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
