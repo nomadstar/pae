@@ -1,26 +1,21 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import logo from "../../assets/logo.webp"
-import Login from "../login/Login"
-import Register from "../register/Register"
+import logo1 from "../../assets/logo-1.png"
+import Social from "../Social"
 import './navbar.css';
 
-const Navbar = ({ changeLogin, changeRegister }) => {
+const Navbar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
-
     const [nickname, setNickName] = useState("");
-
     useEffect(() => {
         const token = localStorage.getItem('miToken');
         if (token) {
             setNickName(localStorage.getItem('username'));
         }
     }, [])
-
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
@@ -37,41 +32,46 @@ const Navbar = ({ changeLogin, changeRegister }) => {
     }, [prevScrollPos]);
 
     return (
-        <nav className={`app__navbar ${visible ? '' : 'app__navbar--hidden'}`}>
-            <div className='app__navbar-logo-container'>
-                <img src={logo} alt='logo' />
+        <nav className={`app__navbar px-6 ${visible ? '' : 'app__navbar--hidden'}`}>
+            <div className='w-48'>
+                <img src={logo1} alt='logo' />
             </div>
-            <div className='app__navbar-link-container'>
-                <Link className='app_navbar-link' to='/'>
+            <div className='hidden 2xl:flex justify-center items-center text-white gap-4 font-semibold'>
+                <Link className='' to='/'>
                     Home
                 </Link>
-                <a href='#whatispae'>¿Quienes somos?</a>
-                <a href='#pros'>Profesionales</a>
-                <a href='#comments'>Comentarios</a>
+                <a href='#whatispae'>¿Qué es pregúntale al experto?</a>
+                <Link className='' to='/begin'>
+                    Consulta
+                </Link>
+                <a href='#pros'>Especialistas</a>
+                <Link className='flex gap-1 justify-center items-center' to="/profile">
+                    <span class="icon-[iconamoon--profile-fill] w-12 cursor-pointer text-white text-3xl hover:text-gray-200">
+                    </span>
+                    <p className='hover:text-gray-200'>Mi perfil</p>
+                </Link>
             </div>
+            <a target='_blank' className='hidden 2xl:flex rounded-2xl text-white hover:bg-pink-600 bg-pink-500 py-2 px-4' href='https://www.mimanualdelbebe.com'>Mi manual del bebé</a>
             {
-                    nickname != "" ? (
-                        <div className="flex gap-3 justify-center items-center">
-                            <button className='button_sesion' onClick={() => {
-                                localStorage.removeItem('miToken');
-                                window.location.reload();
-                            }}>Cerrar sesión</button>
-                            <a className="text-md text-white">Logeado - <b>{nickname}</b></a>
-                            <span className="icon-[material-symbols--logout]"></span>
-                        </div>
-                    ) : ( 
-                    <div className="flex gap-2">
-                        <button className='button_sesion' onClick={()=>{
-                            changeLogin(true);
-                            changeRegister(false);
-                        }} >Iniciar sesión</button>
-                        <span className="icon-[material-symbols--login]"></span>
+                nickname && (
+                    <div className="2xl:flex gap-1 justify-center items-center hidden">
+                        <Link to="/profile">
+                            <span class="icon-[iconamoon--profile-fill] w-12 cursor-pointer text-white text-3xl hover:text-gray-200"></span>
+                        </Link>
+                        <p className="text-md text-white">Logeado - <b>{nickname}</b></p>
+                        <span onClick={() => {
+                            localStorage.removeItem('miToken');
+                            window.location.reload();
+                        }} className="icon-[material-symbols--logout] cursor-pointer text-white text-3xl hover:text-gray-200"></span>
                     </div>
-                    )
-                }
-            <div className='app__navbar-smallscreen'>
+                )}
+            <div className='hidden 2xl:flex'>
+                <Social navbar={true} />
+            </div>
+
+            <div className='flex 2xl:hidden'>
                 <GiHamburgerMenu
-                    style={{ cursor: 'pointer' }}
+                    className='flex 2xl:hidden cursor-pointer'
                     color='#fff'
                     fontSize={27}
                     onClick={() => setToggleMenu(true)}
@@ -88,34 +88,22 @@ const Navbar = ({ changeLogin, changeRegister }) => {
                             </button>
                         </div>
                         <ul className='app__navbar-smallscreen-links'>
-                            <Link
-                                onClick={() => setToggleMenu(false)}
-                                className='app_navbar-link-responsive'
-                                to='/'
-                            >
+                            <Link className='' to='/'>
                                 Home
                             </Link>
-                            <a onClick={() => setToggleMenu(false)} href='#whatispae'>
-                                ¿Quienes somos?
-                            </a>
-                            <a onClick={() => setToggleMenu(false)} href='#pros'>
-                                Profesionales
-                            </a>
-                            <a onClick={() => setToggleMenu(false)} href='#comments'>
-                                Comentarios
-                            </a>
-                            <a onClick={() => setToggleMenu(false)} href='#footer'>
-                                Contacto
-                            </a>
+                            <a href='#whatispae' onClick={() => setToggleMenu(false)}>¿Qué es pregúntale al experto?</a>
+                            <Link className='' to='/begin'>
+                                Consulta
+                            </Link>
+                            <a href='#pros' onClick={() => setToggleMenu(false)}>Especialistas</a>
+                            <Link className='' to="/profile">
+                                <span class="icon-[iconamoon--profile-fill] text-white text-3xl">
+                                </span>
+                                <p>Mi perfil</p>
+                            </Link>
                         </ul>
                     </div>
                 )}
-            </div>
-
-            <div style={{color: "white"}} className='app__navbar-buttons-container'>
-                <a className='app__navbar-buttons-container-link' href='https://www.mimanualdelbebe.com'>
-                    Mi manual del bebé
-                </a>
             </div>
         </nav>
     );

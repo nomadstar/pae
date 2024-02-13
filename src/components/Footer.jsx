@@ -34,7 +34,7 @@ const Footer = ({estilo=""}) => {
           <div><img src={logo1} alt="image" /></div>
           <div>
             <p className='text-center text-xl'>Síguenos</p>
-            <Social />
+            <Social navbar={false} />
           </div>
         </div>
       </div>
