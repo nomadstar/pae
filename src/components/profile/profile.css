@@ -25,3 +25,8 @@
     height: 15rem;
     position: relative;
 }
+
+input {
+    border: none;
+    outline: 1px solid var(--celeste-color);
+}

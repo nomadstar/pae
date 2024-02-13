@@ -2,10 +2,10 @@ import React, { lazy, Suspense, useEffect } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import Loading from './Loading'
 import Home from "./pages/Home"
+import Profile from "./pages/Profile"
 import { ThanksP, ThanksT } from "./pages/Thanks"
 const Pay = lazy(() => import('./pages/pay/Pay'));
 const Page404 = lazy(() => import('./pages/Page404'));
-const Profile = lazy(() => import('./pages/Profile'));
 
 
 
