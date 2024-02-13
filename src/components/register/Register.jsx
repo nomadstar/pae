@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import "../login/login.css";
 
 const Register = ({ state, setRegistrarse, openLogin, changeLogin }) => {
@@ -114,8 +115,9 @@ const Register = ({ state, setRegistrarse, openLogin, changeLogin }) => {
                         <button className="relative" onClick={handleTogglePasswordVisibility}>
                             {showPassword ? <span className="absolute left-1 top-0 icon-[mdi--hide-outline]"></span> : <span className="absolute left-1 top-0 icon-[mdi--show-outline]"></span>}
                         </button>
-                    </div>
+                        </div>
                 </div>
+                
                 <button className="button-form my-4" onClick={registrarse}>
                     Registrar cuenta
                 </button>
